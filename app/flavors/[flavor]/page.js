@@ -1,4 +1,4 @@
-export default function FlavorPage({ params }) {
+export default async function FlavorPage({ params }) {
   const flavorData = {
     "peanut-butter": {
       name: "Peanut Butter",
