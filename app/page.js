@@ -17,7 +17,7 @@ export default function Home() {
         <ul className="list-disc pl-4 sm:pl-5 space-y-1 sm:space-y-2">
           {flavors.map((flavor, index) => (
             <li
-              key={index.slug}
+              key={flavor.slug}
               className="text-base sm:text-lg md:text-xl text-gray-800"
             >
               <Link
