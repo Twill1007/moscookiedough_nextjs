@@ -7,6 +7,7 @@ export default function Home() {
     { slug: "chocolate-chip-cookie", name: "Chocolate Chip Cookie" },
     { slug: "snickerdoodle", name: "Snickerdoodle" },
     { slug: "sugar-cookie", name: "Sugar Cookie" },
+    { slug: "chunky-chocolate-chip", name: "Chunky Chocolate Chip" },
   ];
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
