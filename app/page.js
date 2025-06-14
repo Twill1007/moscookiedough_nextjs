@@ -29,6 +29,14 @@ export default function Home() {
             </li>
           ))}
         </ul>
+        <div className="mt-6">
+          <Link
+            href="/cart"
+            className="text-lg sm:text-xl text-purple-500 hover:text-purple-700"
+          >
+            Go to Cart
+          </Link>
+        </div>
       </div>
     </div>
   );
