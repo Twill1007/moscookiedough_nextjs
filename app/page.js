@@ -1,4 +1,3 @@
-"use-client";
 import Link from "next/link";
 
 export default function Home() {
@@ -7,29 +6,29 @@ export default function Home() {
     { slug: "chocolate-chip-cookie", name: "Chocolate Chip Cookie" },
     { slug: "snickerdoodle", name: "Snickerdoodle" },
     { slug: "sugar-cookie", name: "Sugar Cookie" },
-    { slug: "chunky-chocolate-chip", name: "Chunky Chocolate Chip" },
   ];
+
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-md w-full max-w-xs sm:max-w-sm md:max-w-md">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-2 sm:mb-4 text-brown-600">
-          Mos Cookie Dough Flavors
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 flex items-center justify-center py-6 px-4">
+      <div className="bg-white p-6 sm:p-8 md:p-10 rounded-xl shadow-lg w-full text-center">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-6 text-amber-700">
+          Mos Cookie Dough
         </h1>
-        <ul className="list-disc pl-4 sm:pl-5 space-y-1 sm:space-y-2">
-          {flavors.map((flavor, index) => (
-            <li
+        <h2 className="text-xl sm:text-2xl mb-6 text-gray-600">
+          Choose Your Flavor
+        </h2>
+        <div className="flex flex-row justify-center gap-4 overflow-x-auto">
+          {flavors.map((flavor) => (
+            <Link
+              href={`/flavors/${flavor.slug}`}
               key={flavor.slug}
-              className="text-base sm:text-lg md:text-xl text-gray-800"
             >
-              <Link
-                href={`flavors/${flavor.slug}`}
-                className="text-lg sm:text-xl text-blue-500 hover:text-blue-700"
-              >
+              <button className="py-2 px-4 bg-gradient-to-r from-amber-200 to-amber-300 text-amber-900 font-semibold rounded-lg hover:bg-opacity-90 transition duration-200 w-full sm:w-auto min-w-[150px]">
                 {flavor.name}
-              </Link>
-            </li>
+              </button>
+            </Link>
           ))}
-        </ul>
+        </div>
         <div className="mt-6">
           <Link
             href="/cart"
