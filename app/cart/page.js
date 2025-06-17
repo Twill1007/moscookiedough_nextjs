@@ -36,7 +36,7 @@ export default function Cart() {
                   {item.name} - {`${item.quantity} dozen`} {`$${item.price}`}
                 </span>
                 <button
-                  className="ml-4 px-2 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors text-sm"
+                  className="ml-4 px-2 py-1 bg-amber-600 text-white rounded-md hover:bg-red-600 transition-colors text-sm"
                   onClick={() => handleDeleteItem(index)}
                 >
                   X
