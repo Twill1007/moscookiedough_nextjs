@@ -4,7 +4,14 @@ import Link from "next/link";
 import { useCart } from "../context/CartContext";
 
 export default function Cart() {
-  const { cart } = useCart();
+  const { cart, setCart } = useCart();
+
+  const handleDeleteItem = (indexToDelete) => {
+    setCart((prevCart) =>
+      prevCart.filter((_, index) => index !== indexToDelete)
+    );
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white p-6 sm:p-8 rounded-lg shadow-md text-center">
@@ -20,9 +27,20 @@ export default function Cart() {
             {cart.map((item, index) => (
               <div
                 key={index}
-                className="text-lg text-gray-800 mb-2"
+                className="text-lg text-gray-800 mb-2 flex justify-between items-center"
               >
-                {item.name}
+                <span
+                  key={index}
+                  className="text-lg text-gray-800 mb-2"
+                >
+                  {item.name} - {`${item.quantity} dozen`} {`$${item.price}`}
+                </span>
+                <button
+                  className="ml-4 px-2 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors text-sm"
+                  onClick={() => handleDeleteItem(index)}
+                >
+                  X
+                </button>
               </div>
             ))}
           </div>

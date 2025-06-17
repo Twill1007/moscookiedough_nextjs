@@ -27,6 +27,12 @@ const flavorData = {
   },
 };
 
+const quantityOptions = [
+  { label: "1 dozen ($12)", value: 1, price: 12 },
+  { label: "2 dozen ($20)", value: 2, price: 20 },
+  { label: "3 dozen ($25)", value: 3, price: 25 },
+];
+
 export default function FlavorPage({ params }) {
   const flavor = params.flavor;
   const data = flavorData[flavor] || {
@@ -36,6 +42,7 @@ export default function FlavorPage({ params }) {
   const { cart, setCart } = useCart() || { cart: [], setCart: () => {} }; // Fallback if context is undefined
   const [showOverlay, setShowOverlay] = useState(false);
   const [addedFlavor, setAddedFlavor] = useState("");
+  const [selectedQuantity, setSelectedQuantity] = useState(quantityOptions[0]);
 
   const handleAddToCart = () => {
     if (!Array.isArray(cart)) {
@@ -44,7 +51,13 @@ export default function FlavorPage({ params }) {
     }
     setCart((prevCart) => [
       ...prevCart,
-      { slug: flavor, name: data.name, description: data.description },
+      {
+        slug: flavor,
+        name: data.name,
+        description: data.description,
+        quantity: selectedQuantity.value,
+        price: selectedQuantity.price,
+      },
     ]);
     setAddedFlavor(data.name);
     setShowOverlay(true);
@@ -65,6 +78,35 @@ export default function FlavorPage({ params }) {
         <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed mb-6">
           {data.description}
         </p>
+        <div className="mb-6">
+          <label
+            htmlFor="quantity"
+            className="block text-lg text-black mb-2"
+          >
+            Select Quantity:
+          </label>
+          <select
+            id="quantity"
+            value={selectedQuantity.label}
+            onChange={(e) =>
+              setSelectedQuantity(
+                quantityOptions.find((opt) => opt.label === e.target.value)
+              )
+            }
+            className="w-full sm:w-auto px-4 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+          >
+            {quantityOptions.map((option) => (
+              <option
+                key={option.label}
+                value={option.label}
+                className="text-gray-800"
+              >
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <div className="flex flex-row justify-center gap-4 overflow-x-auto">
           <button
             onClick={handleAddToCart}
