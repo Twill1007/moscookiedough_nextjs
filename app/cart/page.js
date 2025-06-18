@@ -12,6 +12,10 @@ export default function Cart() {
     );
   };
 
+  const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
+
+  console.log("This is the total amount", totalAmount);
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white p-6 sm:p-8 rounded-lg shadow-md text-center">
@@ -36,13 +40,16 @@ export default function Cart() {
                   {item.name} - {`${item.quantity} dozen`} {`$${item.price}`}
                 </span>
                 <button
-                  className="ml-4 px-2 py-1 bg-amber-600 text-white rounded-md hover:bg-red-600 transition-colors text-sm"
+                  className="ml-4 px-2 py-1 cursor-pointer bg-amber-600 text-white rounded-md hover:bg-red-600 transition-colors text-sm"
                   onClick={() => handleDeleteItem(index)}
                 >
                   X
                 </button>
               </div>
             ))}
+            <div className="text-xl sm:text-2xl font-bold text-amber-600 mt-4">
+              Total: ${totalAmount}
+            </div>
           </div>
         )}
         <Link
