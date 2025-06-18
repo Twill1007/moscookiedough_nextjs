@@ -58,6 +58,13 @@ export default function Cart() {
         >
           Back to Cookie Flavors
         </Link>
+
+        <Link
+          href="/checkout"
+          className="mt-4 inline-block bg-amber-600 text-white px-6 py-3 rounded-md shadow-md hover:bg-amber-700 transition-colors text-base sm:text-lg"
+        >
+          Proceed to Checkout
+        </Link>
       </div>
     </div>
   );
