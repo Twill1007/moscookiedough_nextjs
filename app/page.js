@@ -23,7 +23,7 @@ export default function Home() {
               href={`/flavors/${flavor.slug}`}
               key={flavor.slug}
             >
-              <button className="py-2 px-4 bg-gradient-to-r from-amber-200 to-amber-300 text-amber-900 font-semibold rounded-lg hover:bg-opacity-90 transition duration-200 w-full sm:w-auto min-w-[150px] cursor-pointer">
+              <button className="py-2 px-4 bg-gradient-to-r from-amber-200 to-amber-300 text-amber-800 font-semibold rounded-lg hover:bg-opacity-90 transition duration-200 w-full sm:w-auto min-w-[150px] cursor-pointer">
                 {flavor.name}
               </button>
             </Link>
