@@ -2,29 +2,15 @@
 import { useCart } from "@/app/context/CartContext";
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation"; // Import useRouter
 
 // prettier-ignore
 const flavorData = {
-  "peanut-butter": {
-    name: "Peanut Butter",
-    description: "Creamy peanut butter cookie dough, perfect for a nutty treat!",
-  },
-  "chocolate-chip-cookie": {
-    name: "Chocolate Chip Cookie",
-    description: "Classic chocolate chip cookie dough with gooey chips!",
-  },
-  "snickerdoodle": {
-    name: "Snickerdoodle",
-    description: "Sweet snickerdoodle dough with a cinnamon twist!",
-  },
-  "sugar-cookie": {
-    name: "Sugar Cookie",
-    description: "Light and sweet sugar cookie dough, great for decorating!",
-  },
-  "chunky-chocolate-chip": {
-    name: "Chunky Chocolate Chip Cookie",
-    description: "Chunky chunks of chocolate chips too good to resist!",
-  },
+  "peanut-butter": { name: "Peanut Butter", description: "Creamy peanut butter cookie dough, perfect for a nutty treat!" },
+  "chocolate-chip-cookie": { name: "Chocolate Chip Cookie", description: "Classic chocolate chip cookie dough with gooey chips!" },
+  "snickerdoodle": { name: "Snickerdoodle", description: "Sweet snickerdoodle dough with a cinnamon twist!" },
+  "sugar-cookie": { name: "Sugar Cookie", description: "Light and sweet sugar cookie dough, great for decorating!" },
+  "chunky-chocolate-chip": { name: "Chunky Chocolate Chip Cookie", description: "Chunky chunks of chocolate chips too good to resist!" },
 };
 
 const quantityOptions = [
@@ -42,13 +28,37 @@ export default function FlavorPage({ params }) {
   const { cart, setCart } = useCart() || { cart: [], setCart: () => {} }; // Fallback if context is undefined
   const [showOverlay, setShowOverlay] = useState(false);
   const [addedFlavor, setAddedFlavor] = useState("");
+  const [overlayMessage, setOverlayMessage] = useState("");
+  const [adjustQuantity, setAdjustQuantity] = useState(null); // { flavor, currentQuantity, newQuantity }
   const [selectedQuantity, setSelectedQuantity] = useState(quantityOptions[0]);
+  const router = useRouter(); // Initialize useRouter
 
   const handleAddToCart = () => {
     if (!Array.isArray(cart)) {
       console.error("Cart is not an array:", cart);
-      setCart([]); // Reset to empty array if invalid
+      setCart([]);
     }
+
+    // Check if this flavor is already in the cart
+    const existingItems = cart.filter((item) => item.slug === flavor);
+    const currentFlavorTotal = existingItems.reduce(
+      (sum, item) => sum + item.quantity,
+      0
+    );
+
+    if (currentFlavorTotal > 0) {
+      setAdjustQuantity({
+        flavor,
+        currentQuantity: currentFlavorTotal,
+        newQuantity: selectedQuantity.value,
+      });
+      setShowOverlay(true);
+      setOverlayMessage(
+        `You already have this cookie in the cart, would you like to change the quantity?`
+      );
+      return;
+    }
+
     setCart((prevCart) => [
       ...prevCart,
       {
@@ -63,11 +73,40 @@ export default function FlavorPage({ params }) {
     setShowOverlay(true);
   };
 
-  const closeOverlay = () => {
-    setShowOverlay(false);
+  const handleQuantityChange = (newValue) => {
+    if (adjustQuantity) {
+      setAdjustQuantity({ ...adjustQuantity, newQuantity: newValue });
+    }
   };
 
-  console.log("Cart in FlavorPage:", cart);
+  const confirmQuantityChange = () => {
+    if (adjustQuantity) {
+      const { flavor, newQuantity } = adjustQuantity;
+      const newPrice =
+        quantityOptions.find((opt) => opt.value === newQuantity)?.price || 0;
+      setCart((prevCart) => {
+        const updatedCart = prevCart.filter((item) => item.slug !== flavor);
+        return [
+          ...updatedCart,
+          {
+            slug: flavor,
+            name: flavorData[flavor].name,
+            description: flavorData[flavor].description,
+            quantity: newQuantity,
+            price: newPrice,
+          },
+        ];
+      });
+      setShowOverlay(false);
+      setAdjustQuantity(null);
+    }
+  };
+
+  const closeOverlay = () => {
+    setShowOverlay(false);
+    setAdjustQuantity(null);
+    router.push("/"); // Redirect to home page
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 flex items-center justify-center py-16 px-4">
@@ -106,7 +145,6 @@ export default function FlavorPage({ params }) {
             ))}
           </select>
         </div>
-
         <div className="flex flex-row justify-center gap-4 overflow-x-auto">
           <button
             onClick={handleAddToCart}
@@ -131,13 +169,51 @@ export default function FlavorPage({ params }) {
       {showOverlay && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg text-center max-w-sm">
-            <p className="text-lg text-gray-800">{`${addedFlavor} added to cart!`}</p>
-            <button
-              onClick={closeOverlay}
-              className="mt-4 px-4 py-2 bg-amber-600 text-white rounded-md hover:bg-amber-700 transition-colors"
-            >
-              Close
-            </button>
+            {adjustQuantity ? (
+              <>
+                <p className="text-lg text-gray-800">{overlayMessage}</p>
+                <select
+                  value={adjustQuantity.newQuantity}
+                  onChange={(e) =>
+                    handleQuantityChange(parseInt(e.target.value))
+                  }
+                  className="mt-4 w-full px-4 py-2 border  text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+                >
+                  {quantityOptions.map((option) => (
+                    <option
+                      key={option.value}
+                      value={option.value}
+                    >
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+                <div className="mt-4 flex justify-center gap-4">
+                  <button
+                    onClick={confirmQuantityChange}
+                    className="px-4 py-2 bg-amber-600 text-white rounded-md hover:bg-amber-700 transition-colors"
+                  >
+                    Confirm
+                  </button>
+                  <button
+                    onClick={closeOverlay}
+                    className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <p className="text-lg text-gray-800">{`${addedFlavor} added to cart!`}</p>
+                <button
+                  onClick={closeOverlay}
+                  className="mt-4 px-4 py-2 bg-amber-600 text-white rounded-md hover:bg-amber-700 transition-colors"
+                >
+                  Close
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}

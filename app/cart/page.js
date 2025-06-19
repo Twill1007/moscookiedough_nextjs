@@ -103,6 +103,12 @@ export default function Cart() {
         >
           Back to Home Page
         </Link>
+        <Link
+          className="mt-4 bg-amber-600 text-white px-6 py-3 rounded-md shadow-md hover:bg-amber-700 transition-colors cursor-pointer text-base sm:text-lg"
+          href="/checkout"
+        >
+          Proceed to Checkout
+        </Link>
       </div>
       +
       {showOverlay && (
