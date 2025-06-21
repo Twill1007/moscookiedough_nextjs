@@ -56,6 +56,7 @@ export default function Checkout() {
       items: cart.map((item) => ({
         flavor: item.name,
         quantity: item.quantity,
+        filled: false,
       })),
       createdAt: new Date(),
     };
