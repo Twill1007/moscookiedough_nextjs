@@ -67,14 +67,31 @@ export default function AdminPage() {
             )}
           </section>
 
-          {/* Fulfilled Orders Placeholder */}
+          {/* Fulfilled Orders Section */}
           <section className="mb-10">
             <h2 className="text-2xl font-semibold mb-3 text-green-700">
               Fulfilled Orders
             </h2>
-            <p className="text-gray-600">
-              [Placeholder] Showing fully filled orders here soon.
-            </p>
+            {fulfilledOrders.length === 0 ? (
+              <p className="text-gray-600">No fulfilled orders.</p>
+            ) : (
+              <div className="space-y-3">
+                {fulfilledOrders.map((order, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedOrder(order)}
+                    className="w-full text-left bg-green-100 cursor-pointer hover:bg-green-200 px-4 py-3 rounded-md shadow-sm border border-green-400 transition-colors"
+                  >
+                    <span className="font-medium text-lg">{order.name}</span>
+                    <span className="block text-sm text-gray-700">
+                      {order.items
+                        .map((item) => `${item.quantity} Dozen ${item.flavor}`)
+                        .join(", ")}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            )}
           </section>
 
           {/* Order History Placeholder */}
