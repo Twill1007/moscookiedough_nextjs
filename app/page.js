@@ -1,107 +1,165 @@
 import Link from "next/link";
 
-const flavorData = {
-  "chocolate-chip-cookie": {
-    name: "Chocolate Chip Cookie",
-    description:
-      "Classic chocolate chip cookie dough with gooey chips! These cookies are chewy with crisp edges, offering a sweet, buttery flavor with rich chocolate notes. Perfect for pairing with cold milk or a scoop of vanilla ice cream.",
-  },
-  snickerdoodle: {
-    name: "Snickerdoodle",
-    description:
-      "Sweet snickerdoodle dough with a cinnamon twist! Soft and pillowy with a sugary crunch, they deliver a sweet taste with warm cinnamon spice. Enjoy them with hot chai tea or a pumpkin spice latte for a cozy treat.",
-  },
-  "sugar-cookie": {
-    name: "Sugar Cookie",
-    description:
-      "Light and sweet sugar cookie dough, great for decorating! With a light and tender texture that slightly crumbles, they feature sweet, delicate vanilla undertones. Pair with Earl Grey tea or a fruity sorbet for a delightful experience.",
-  },
-};
-
-export default function Home() {
-  const flavors = ["chocolate-chip-cookie", "snickerdoodle", "sugar-cookie"];
-
+export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-[#FFF2F6] w-full">
-      <div className="w-full flex flex-col items-center py-8 px-0">
-        <div className="w-full max-w-5xl mb-10 text-center px-4">
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-3 text-pink-700 drop-shadow">
-            <span
-              role="img"
-              aria-label="sparkles"
-            >
-              ✨
-            </span>{" "}
-            Mo&apos;s Cookie Dough{" "}
-            <span
-              role="img"
-              aria-label="sparkles"
-            >
-              ✨
-            </span>
-          </h1>
-          <h2 className="text-xl sm:text-2xl mb-8 text-pink-700 font-semibold">
-            Choose Your Flavor
-          </h2>
+    <div className="min-h-screen w-full bg-gradient-to-br from-pink-100 to-yellow-50 flex flex-col items-center">
+      {/* Nav Bar */}
+      <nav className="w-full flex justify-between items-center px-8 py-6 bg-white/70 shadow-sm fixed top-0 left-0 z-20">
+        <div className="flex items-center gap-3">
+          {/* Logo (replace with your logo src) */}
+          <img
+            src="/logo.png"
+            alt="Mo's Dough Logo"
+            className="h-10 w-10 rounded-full object-contain border border-pink-300"
+          />
+          <span className="font-extrabold text-2xl text-pink-700">
+            Mo&apos;s Dough
+          </span>
         </div>
-
-        <div className="w-full flex flex-col gap-12">
-          {flavors.map((slug, idx) => {
-            const { name, description } = flavorData[slug];
-            const isEven = idx % 2 === 0;
-            return (
-              <div
-                key={slug}
-                className={`w-full flex flex-col md:flex-row ${
-                  isEven ? "md:flex-row" : "md:flex-row-reverse"
-                } items-stretch gap-0 md:gap-0 bg-white/80 shadow-md`}
-                style={{ minHeight: "320px" }}
-              >
-                {/* Cookie Image/Button Side */}
-                <Link
-                  href={`/flavors/${slug}`}
-                  className="group flex-1 min-h-[200px] flex"
-                >
-                  <div
-                    className="w-full h-48 md:h-auto flex-1 bg-cover bg-center transition-transform hover:scale-105 cursor-pointer relative flex items-end"
-                    style={{
-                      backgroundImage: `url(/cookies/${slug}.jpg)`,
-                      minHeight: "320px",
-                    }}
-                  >
-                    {/* <span className="absolute left-0 bottom-0 right-0 text-white font-extrabold text-2xl sm:text-3xl mb-8 drop-shadow-lg bg-black/40 px-4 py-2 rounded-t-xl text-center pointer-events-none">
-                      {name}
-                    </span> */}
-                  </div>
-                </Link>
-                {/* Text Side */}
-                <div className="flex-1 flex flex-col justify-center items-center md:items-start p-8 md:p-12">
-                  <h3 className="text-3xl sm:text-4xl font-bold text-pink-600 mb-2">
-                    {name}
-                  </h3>
-                  <p className="text-lg sm:text-xl text-gray-700 mb-4">
-                    {description}
-                  </p>
-                  <Link
-                    href={`/flavors/${slug}`}
-                    className="inline-block bg-pink-500 text-white font-semibold px-5 py-2 rounded-full shadow hover:bg-pink-700 transition"
-                  >
-                    See Details
-                  </Link>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        <div className="mt-10">
+        <div className="flex gap-6">
+          <Link
+            href="/menu"
+            className="text-pink-700 font-semibold hover:underline"
+          >
+            Menu
+          </Link>
+          <Link
+            href="/about"
+            className="text-pink-700 font-semibold hover:underline"
+          >
+            About
+          </Link>
           <Link
             href="/cart"
-            className="inline-block text-lg font-bold text-white bg-pink-500 px-8 py-3 rounded-full hover:bg-pink-700 transition-colors duration-200 shadow-md"
+            className="text-pink-700 font-semibold hover:underline"
           >
-            Go to Cart
+            Cart
           </Link>
         </div>
+      </nav>
+
+      {/* Spacer for nav */}
+      <div className="h-24" />
+
+      {/* Hero Section */}
+      <section className="w-full flex flex-col items-center justify-center py-8">
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-pink-700 mb-4 drop-shadow text-center">
+          Cookie Dough. Movie Night Magic.
+        </h1>
+        <p className="text-lg sm:text-xl text-gray-700 mb-8 text-center max-w-xl">
+          Freshly-rolled dough balls delivered to your door—bake when you want
+          or keep them in your freezer for the perfect moment. No mess. No
+          hassle. Just pure joy.
+        </p>
+        <Link
+          href="/menu"
+          className="bg-pink-500 hover:bg-pink-700 transition-colors text-white font-bold py-3 px-10 rounded-full text-lg shadow-md text-center"
+        >
+          See the Menu
+        </Link>
+      </section>
+
+      {/* Zig-Zag Info Section */}
+      <div className="w-full max-w-5xl flex flex-col gap-20 pb-16">
+        {/* Row 1 */}
+        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-0">
+          {/* Image */}
+          <div className="md:w-1/2 w-full flex justify-center">
+            <div className="w-72 h-72 rounded-3xl bg-gray-200 flex items-center justify-center shadow-lg">
+              {/* Swap src with real image */}
+              <span className="text-gray-400 text-lg">[Dough Balls Image]</span>
+            </div>
+          </div>
+          {/* Text */}
+          <div className="md:w-1/2 w-full px-6">
+            <h2 className="text-2xl font-bold text-pink-700 mb-3">
+              Ready for the Freezer or Oven
+            </h2>
+            <p className="text-base text-gray-700 mb-2">
+              Stock your freezer with Mo’s Dough cookie balls—pop one out for a
+              midnight snack, or bake up a whole batch for a spontaneous family
+              gathering. No prep, no cleanup. Just pure, doughy delight.
+            </p>
+            <p className="text-base text-gray-700">
+              <span className="font-semibold">Bake them fresh, anytime.</span>{" "}
+              The best cookies are the ones you make at home—with none of the
+              hassle.
+            </p>
+          </div>
+        </div>
+        {/* Row 2 */}
+        <div className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-0">
+          {/* Image */}
+          <div className="md:w-1/2 w-full flex justify-center">
+            <div className="w-72 h-72 rounded-3xl bg-gray-200 flex items-center justify-center shadow-lg">
+              {/* Swap src with real image */}
+              <span className="text-gray-400 text-lg">
+                [Family Movie Night Image]
+              </span>
+            </div>
+          </div>
+          {/* Text */}
+          <div className="md:w-1/2 w-full px-6">
+            <h2 className="text-2xl font-bold text-pink-700 mb-3">
+              The Movie Night Experience
+            </h2>
+            <p className="text-base text-gray-700 mb-2">
+              Imagine: The aroma of gooey cookies fills your home as the family
+              gathers for movie night or a board game showdown. Blankets out,
+              laughter in the air, and a tray of warm, fresh cookies for
+              everyone to share.
+            </p>
+            <p className="text-base text-gray-700">
+              <span className="font-semibold">
+                Smell the love, taste the happiness.
+              </span>{" "}
+              Baking cookies brings everyone to the kitchen—then the couch,
+              ready for the perfect night in.
+            </p>
+          </div>
+        </div>
+        {/* Row 3 */}
+        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-0">
+          {/* Image */}
+          <div className="md:w-1/2 w-full flex justify-center">
+            <div className="w-72 h-72 rounded-3xl bg-gray-200 flex items-center justify-center shadow-lg">
+              {/* Swap src with real image */}
+              <span className="text-gray-400 text-lg">
+                [Warm Cookies Image]
+              </span>
+            </div>
+          </div>
+          {/* Text */}
+          <div className="md:w-1/2 w-full px-6">
+            <h2 className="text-2xl font-bold text-pink-700 mb-3">
+              Benefits of Freshly Baked Cookies
+            </h2>
+            <ul className="list-disc list-inside text-gray-700 space-y-1">
+              <li>
+                <span className="font-semibold">Stress relief:</span> The scent
+                of cookies baking is proven to relax and comfort.
+              </li>
+              <li>
+                <span className="font-semibold">Togetherness:</span> Share the
+                fun—kids love helping shape and bake their own treats!
+              </li>
+              <li>
+                <span className="font-semibold">Instant celebration:</span> Any
+                evening becomes special with a tray of warm cookies.
+              </li>
+              <li>
+                <span className="font-semibold">Simple happiness:</span> Because
+                a freshly baked cookie just makes life sweeter.
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
+      {/* Footer */}
+      <footer className="w-full py-8 mt-auto text-center text-sm text-gray-400 bg-pink-50">
+        &copy; {new Date().getFullYear()} Mo&apos;s Dough — Spread joy, one
+        cookie at a time.
+      </footer>
     </div>
   );
 }
