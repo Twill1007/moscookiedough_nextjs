@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import OrderDetail from "../components/orders/OrderDetail";
 import FulfilledOrders from "../components/orders/FulfilledOrders";
+import LogoutButton from "../components/orders/LogoutButton";
 
 export default function AdminClientPage() {
   const [orders, setOrders] = useState([]);
@@ -34,8 +35,15 @@ export default function AdminClientPage() {
   );
 
   return (
-    <div className="p-6 max-w-4xl text-black mx-auto relative">
-      <h1 className="text-3xl font-bold text-amber-600 mb-6">Admin Orders</h1>
+    <div className="p-6 max-w-4xl mt-10 text-black mx-auto relative">
+      <h1 className="text-3xl font-bold mt-10 text-amber-600 mb-6">
+        Admin Orders
+      </h1>
+      <div>
+        <div className="flex justify-end mb-4">
+          <LogoutButton />
+        </div>
+      </div>
 
       {loading ? (
         <p>Loading orders...</p>

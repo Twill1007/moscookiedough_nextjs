@@ -1,32 +1,35 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function AdminLoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = async (e) => {
+  const router = useRouter();
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    setError("");
+    //collect username/password
 
     const res = await fetch("/api/admin/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
     });
-
     if (res.ok) {
-      window.location.href = "/admin";
+      router.push("/admin");
     } else {
       setError("Invalid credentials. Please try again");
     }
   };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-pink-50">
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleLogin}
         className="bg-white p-8 rounded-xl shadow-md w-full max-w-sm"
       >
         <h1 className="text-2xl font-bold text-pink-700 mb-6">Admin Login</h1>
@@ -48,7 +51,7 @@ export default function AdminLoginPage() {
         <div className="mb-6">
           <label className="block text-pink-700 mb-1">Password</label>
           <input
-            type="text"
+            type="password"
             className="w-full px-3 py-2 border rounded-md  text-black"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -58,7 +61,7 @@ export default function AdminLoginPage() {
         </div>
         <button
           type="submit"
-          className="w-full bg-pink-500 text-white py-2 rounded-md font-semibold hover:bg-pink-700 transition"
+          className="w-full bg-pink-500 cursor-pointer text-white py-2 rounded-md font-semibold hover:bg-pink-700 transition"
         >
           Login
         </button>

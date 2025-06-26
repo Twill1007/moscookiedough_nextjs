@@ -22,7 +22,7 @@ export default function Menu() {
   const flavors = ["chocolate-chip-cookie", "snickerdoodle", "sugar-cookie"];
 
   return (
-    <div className="min-h-screen bg-[#FFF2F6] w-full">
+    <div className="min-h-screen bg-[#FFF2F6] w-full pt-24">
       <div className="w-full flex flex-col items-center py-8 px-0">
         <div className="w-full max-w-5xl mb-10 text-center px-4">
           <h1 className="text-4xl sm:text-5xl font-extrabold mb-3 text-pink-700 drop-shadow">

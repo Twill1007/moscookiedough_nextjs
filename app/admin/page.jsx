@@ -4,7 +4,9 @@ import AdminClientPage from "./AdminClientPage";
 
 export default async function AdminPage() {
   // Check for admin_auth cookie
-  const isAdmin = cookies().get("admin_auth")?.value === "true";
+
+  const cookieStore = await cookies();
+  const isAdmin = cookieStore.get("admin_auth")?.value === "true";
 
   if (!isAdmin) {
     // Not authenticated, show message or redirect

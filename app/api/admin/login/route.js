@@ -1,29 +1,32 @@
 import { NextResponse } from "next/server";
+import bcrypt from "bcrypt";
 
 export async function POST(request) {
   const { username, password } = await request.json();
 
-  // Check against environment variables
-  const adminUser = process.env.ADMIN_USER;
-  const adminPass = process.env.ADMIN_PASS;
-
-  // Simple check (in a real app, use hashing and more security)
-  if (username === adminUser && password === adminPass) {
-    const response = NextResponse.json({
-      success: true,
-    });
-    response.cookies.set("admin_auth", true, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      path: "/",
-      maxAge: 60 * 60 * 4,
-    });
-    return response;
+  // Check username
+  if (username !== process.env.ADMIN_USER) {
+    return NextResponse.json({ error: "Invalid Credentials" }, { status: 401 });
   }
-  return NextResponse.json(
-    { success: false },
-    {
-      status: 401,
-    }
+
+  // Check password
+  const isValid = await bcrypt.compare(password, process.env.ADMIN_HASH);
+  if (!isValid) {
+    return NextResponse.json({ error: "Invalid Credentials" }, { status: 401 });
+  }
+
+  // Login successful - set cookie
+  const response = NextResponse.json(
+    { message: "Login Successful" },
+    { status: 200 }
   );
+  response.cookies.set("admin_auth", "true", {
+    httpOnly: true,
+    path: "/",
+    sameSite: "lax",
+    // secure: true, // add in production/https
+    maxAge: 60 * 60 * 2, // 2 hours
+  });
+
+  return response;
 }
