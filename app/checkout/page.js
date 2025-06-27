@@ -63,7 +63,6 @@ export default function Checkout() {
       createdAt: new Date(),
     });
 
-    console.log("Pushing to Review");
     router.push("/review");
   };
 
