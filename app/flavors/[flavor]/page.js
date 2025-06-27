@@ -3,36 +3,8 @@ import { useCart } from "@/app/context/CartContext";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
-const flavorData = {
-  "peanut-butter": {
-    name: "Peanut Butter",
-    description:
-      "Creamy peanut butter cookie dough, perfect for a nutty treat!",
-  },
-  "chocolate-chip-cookie": {
-    name: "Chocolate Chip Cookie",
-    description: "Classic chocolate chip cookie dough with gooey chips!",
-  },
-  snickerdoodle: {
-    name: "Snickerdoodle",
-    description: "Sweet snickerdoodle dough with a cinnamon twist!",
-  },
-  "sugar-cookie": {
-    name: "Sugar Cookie",
-    description: "Light and sweet sugar cookie dough, great for decorating!",
-  },
-  "chunky-chocolate-chip": {
-    name: "Chunky Chocolate Chip Cookie",
-    description: "Chunky chunks of chocolate chips too good to resist!",
-  },
-};
-
-const quantityOptions = [
-  { label: "1 dozen ($10)", value: 1, price: 10 },
-  { label: "2 dozen ($18)", value: 2, price: 18 },
-  { label: "3 dozen ($24)", value: 3, price: 24 },
-];
+import flavorData from "@/app/constants/cookieFlavors";
+import quantityOptions from "@/app/constants/quantityOptions";
 
 export default function FlavorPage({ params }) {
   const flavor = params.flavor;

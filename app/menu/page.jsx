@@ -1,22 +1,5 @@
 import Link from "next/link";
-
-const flavorData = {
-  "chocolate-chip-cookie": {
-    name: "Chocolate Chip Cookie",
-    description:
-      "Classic chocolate chip cookie dough with gooey chips! These cookies are chewy with crisp edges, offering a sweet, buttery flavor with rich chocolate notes. Perfect for pairing with cold milk or a scoop of vanilla ice cream.",
-  },
-  snickerdoodle: {
-    name: "Snickerdoodle",
-    description:
-      "Sweet snickerdoodle dough with a cinnamon twist! Soft and pillowy with a sugary crunch, they deliver a sweet taste with warm cinnamon spice. Enjoy them with hot chai tea or a pumpkin spice latte for a cozy treat.",
-  },
-  "sugar-cookie": {
-    name: "Sugar Cookie",
-    description:
-      "Light and sweet sugar cookie dough, great for decorating! With a light and tender texture that slightly crumbles, they feature sweet, delicate vanilla undertones. Pair with Earl Grey tea or a fruity sorbet for a delightful experience.",
-  },
-};
+import flavorData from "../constants/cookieFlavors";
 
 export default function Menu() {
   const flavors = ["chocolate-chip-cookie", "snickerdoodle", "sugar-cookie"];

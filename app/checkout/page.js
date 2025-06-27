@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { useCart } from "../context/CartContext";
-import PayButton from "../components/orders/PayButton";
+import { useRouter } from "next/navigation";
 
 export default function Checkout() {
-  const { cart, setCart } = useCart();
+  const { cart, setCheckoutInfo } = useCart();
+  const router = useRouter();
 
   const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
 
@@ -45,7 +46,7 @@ export default function Checkout() {
       return;
     }
 
-    const order = {
+    setCheckoutInfo({
       name: form.name.value,
       email,
       phone,
@@ -60,26 +61,10 @@ export default function Checkout() {
         filled: false,
       })),
       createdAt: new Date(),
-    };
+    });
 
-    try {
-      const response = await fetch("/api/orders", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(order),
-      });
-
-      if (response.ok) {
-        alert("Order placed successfully!!");
-        setCart([]);
-        form.reset();
-      } else {
-        alert("Failed to place order.");
-      }
-    } catch (err) {
-      console.error("Error submitting order:", err);
-      alert("An error occurred while placing your order.");
-    }
+    console.log("Pushing to Review");
+    router.push("/review");
   };
 
   return (
@@ -199,24 +184,10 @@ export default function Checkout() {
 
               <button
                 type="submit"
-                className="w-full bg-amber-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-amber-700 transition-colors text-lg"
+                className="w-full cursor-pointer bg-amber-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-amber-700 transition-colors text-lg"
               >
                 Proceed to Payment
               </button>
-              <PayButton
-                lineItems={[
-                  {
-                    price_data: {
-                      currency: "usd",
-                      product_data: {
-                        name: "Chocolate Chip Cookie Dough",
-                      },
-                      unit_amount: 1200, // $12.00 (amount is in cents)
-                    },
-                    quantity: 1,
-                  },
-                ]}
-              />
             </form>
           </>
         )}
