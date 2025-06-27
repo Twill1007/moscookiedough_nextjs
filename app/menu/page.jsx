@@ -22,8 +22,8 @@ export default function Menu() {
   const flavors = ["chocolate-chip-cookie", "snickerdoodle", "sugar-cookie"];
 
   return (
-    <div className="min-h-screen bg-[#FFF2F6] w-full pt-24">
-      <div className="w-full flex flex-col items-center py-8 px-0">
+    <div className="min-h-screen bg-white w-full pt-24">
+      <div className="w-full flex flex-col items-center py-8 px-4">
         <div className="w-full max-w-5xl mb-10 text-center px-4">
           <h1 className="text-4xl sm:text-5xl font-extrabold mb-3 text-pink-700 drop-shadow">
             <span
@@ -45,37 +45,42 @@ export default function Menu() {
           </h2>
         </div>
 
-        <div className="w-full flex flex-col gap-12">
+        <div className="w-full flex flex-col gap-12 max-w-5xl">
           {flavors.map((slug, idx) => {
             const { name, description } = flavorData[slug];
             const isEven = idx % 2 === 0;
+            // Optionally change border color per row for extra bakery vibe!
+            const borderColor = isEven
+              ? "border-pink-200"
+              : "border-yellow-100";
             return (
               <div
                 key={slug}
                 className={`w-full flex flex-col md:flex-row ${
                   isEven ? "md:flex-row" : "md:flex-row-reverse"
-                } items-stretch gap-0 md:gap-0 bg-white/80 shadow-md`}
+                } items-stretch bg-white shadow-2xl rounded-2xl overflow-hidden border-2 ${borderColor}`}
                 style={{ minHeight: "320px" }}
               >
                 {/* Cookie Image/Button Side */}
                 <Link
                   href={`/flavors/${slug}`}
-                  className="group flex-1 min-h-[200px] flex"
+                  className="group flex-1 min-h-[200px] flex bg-gray-50 items-center justify-center"
+                  tabIndex={0}
                 >
                   <div
-                    className="w-full h-48 md:h-auto flex-1 bg-cover bg-center transition-transform hover:scale-105 cursor-pointer relative flex items-end"
+                    className="w-64 h-64 md:w-72 md:h-72 rounded-full bg-white border-4 border-pink-100 shadow-lg flex items-center justify-center overflow-hidden transition-transform hover:scale-105 cursor-pointer"
                     style={{
                       backgroundImage: `url(/cookies/${slug}.jpg)`,
-                      minHeight: "320px",
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
                     }}
                   >
-                    {/* <span className="absolute left-0 bottom-0 right-0 text-white font-extrabold text-2xl sm:text-3xl mb-8 drop-shadow-lg bg-black/40 px-4 py-2 rounded-t-xl text-center pointer-events-none">
-                      {name}
-                    </span> */}
+                    {/* Remove this if you have real images */}
+                    {/* <span className="text-pink-300 text-lg">{name}</span> */}
                   </div>
                 </Link>
                 {/* Text Side */}
-                <div className="flex-1 flex flex-col justify-center items-center md:items-start p-8 md:p-12">
+                <div className="flex-1 flex flex-col justify-center items-center md:items-start p-8 md:p-12 bg-white">
                   <h3 className="text-3xl sm:text-4xl font-bold text-pink-600 mb-2">
                     {name}
                   </h3>
@@ -84,7 +89,7 @@ export default function Menu() {
                   </p>
                   <Link
                     href={`/flavors/${slug}`}
-                    className="inline-block bg-pink-500 text-white font-semibold px-5 py-2 rounded-full shadow hover:bg-pink-700 transition"
+                    className="inline-block bg-pink-500 text-white font-semibold px-6 py-2 rounded-full shadow-lg hover:bg-pink-700 transition"
                   >
                     See Details
                   </Link>
@@ -96,7 +101,7 @@ export default function Menu() {
         <div className="mt-10">
           <Link
             href="/cart"
-            className="inline-block text-lg font-bold text-white bg-pink-500 px-8 py-3 rounded-full hover:bg-pink-700 transition-colors duration-200 shadow-md"
+            className="inline-block text-lg font-bold text-white bg-pink-500 px-8 py-3 rounded-full hover:bg-pink-700 transition-colors duration-200 shadow-lg"
           >
             Go to Cart
           </Link>

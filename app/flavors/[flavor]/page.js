@@ -186,7 +186,7 @@ export default function FlavorPage({ params }) {
               Add to Cart
             </button>
             <Link
-              href="/"
+              href="/menu"
               className="bg-white border border-pink-300 text-pink-700 px-5 py-2 text-base rounded-full font-bold shadow-sm hover:bg-pink-50 transition-colors cursor-pointer w-full sm:w-auto text-center"
             >
               Back to Flavors

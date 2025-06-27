@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useCart } from "../context/CartContext";
+import PayButton from "../components/orders/PayButton";
 
 export default function Checkout() {
   const { cart, setCart } = useCart();
@@ -200,8 +201,22 @@ export default function Checkout() {
                 type="submit"
                 className="w-full bg-amber-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-amber-700 transition-colors text-lg"
               >
-                Place Order
+                Proceed to Payment
               </button>
+              <PayButton
+                lineItems={[
+                  {
+                    price_data: {
+                      currency: "usd",
+                      product_data: {
+                        name: "Chocolate Chip Cookie Dough",
+                      },
+                      unit_amount: 1200, // $12.00 (amount is in cents)
+                    },
+                    quantity: 1,
+                  },
+                ]}
+              />
             </form>
           </>
         )}

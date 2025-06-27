@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import OrderDetail from "../components/orders/OrderDetail";
-import FulfilledOrders from "../components/orders/FulfilledOrders";
-import LogoutButton from "../components/orders/LogoutButton";
+import OrderDetail from "../../components/orders/OrderDetail";
+import FulfilledOrders from "../../components/orders/FulfilledOrders";
+import LogoutButton from "../../components/orders/LogoutButton";
 
-export default function AdminClientPage() {
+export default function Orders() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedOrder, setSelectedOrder] = useState(null);

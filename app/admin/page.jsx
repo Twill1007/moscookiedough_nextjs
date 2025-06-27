@@ -1,6 +1,6 @@
 // app/admin/page.jsx
 import { cookies } from "next/headers";
-import AdminClientPage from "./AdminClientPage";
+import Orders from "./orders/page";
 
 export default async function AdminPage() {
   // Check for admin_auth cookie
@@ -28,5 +28,5 @@ export default async function AdminPage() {
   // const orders = await fetchOrdersFromDB();
 
   // Option 2: Let the client page fetch as before, just protect with auth
-  return <AdminClientPage />;
+  return <Orders />;
 }
