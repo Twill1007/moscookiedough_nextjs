@@ -123,7 +123,7 @@ export default function FlavorPage({ params }) {
   const closeOverlay = () => {
     setShowOverlay(false);
     setAdjustQuantity(null);
-    router.push("/");
+    router.push("/menu");
   };
 
   return (

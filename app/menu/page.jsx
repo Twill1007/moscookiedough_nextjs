@@ -98,14 +98,6 @@ export default function Menu() {
             );
           })}
         </div>
-        <div className="mt-10">
-          <Link
-            href="/cart"
-            className="inline-block text-lg font-bold text-white bg-pink-500 px-8 py-3 rounded-full hover:bg-pink-700 transition-colors duration-200 shadow-lg"
-          >
-            Go to Cart
-          </Link>
-        </div>
       </div>
     </div>
   );

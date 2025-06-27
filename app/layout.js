@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css"; // Ensure this is present if using Tailwind
 import { CartProvider } from "./context/CartContext";
 import NavBar from "./components/orders/NavBar";
+import Footer from "./components/orders/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
         <CartProvider>
           <NavBar />
           {children}
+          <Footer />
         </CartProvider>
       </body>
     </html>

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export default function POST() {
+export async function POST() {
   const response = NextResponse.json({ message: "Logged Out" });
   response.cookies.set("admin_auth", "", {
     httpOnly: true,
