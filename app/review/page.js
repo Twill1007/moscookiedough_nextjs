@@ -8,9 +8,8 @@ import PayButton from "../components/orders/PayButton";
 export default function Review() {
   const { checkoutInfo, cart } = useCart();
   const router = useRouter();
-  const cartContext = useCart();
 
-  console.log("cartContext:", cartContext);
+  // console.log("cartContext:", checkoutInfo.address.street);
 
   if (!checkoutInfo || !cart || cart.length === 0) {
     router.push("/checkout");
@@ -48,10 +47,6 @@ export default function Review() {
   //   console.error("Error submitting order:", err);
   //   alert("An error occurred while placing your order.");
   // }
-  console.log("Passing to PayButton", {
-    customerName: checkoutInfo?.name,
-    customerEmail: checkoutInfo?.email,
-  });
 
   return (
     <div className="min-h-screen bg-[#FFF2F6] pt-24 w-full flex items-center justify-center px-2">
@@ -112,6 +107,8 @@ export default function Review() {
             lineItems={lineItems} // ✅ Pass the correct Stripe-ready lineItems
             customerName={checkoutInfo?.name}
             customerEmail={checkoutInfo?.email}
+            // customerStreet={checkoutInfo?.address.street}
+            customerPhone={checkoutInfo?.phone}
           />
 
           {/* Or your Stripe logic here */}

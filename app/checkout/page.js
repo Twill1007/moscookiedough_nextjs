@@ -48,12 +48,12 @@ export default function Checkout() {
 
     setCheckoutInfo({
       name: form.name.value,
-      email,
-      phone,
+      email: form.email.value,
+      phone: form.phone.value,
       address: {
-        street,
-        city,
-        zip,
+        street: form.street.value,
+        city: form.city.value,
+        zip: form.zip.value,
       },
       items: cart.map((item) => ({
         flavor: item.name,

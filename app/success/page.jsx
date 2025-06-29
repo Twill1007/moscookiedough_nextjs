@@ -44,7 +44,7 @@ export default function SuccessPage() {
         <ul className="list-disc ml-6">
           {order.items.map((item, i) => (
             <li key={i}>
-              {item.name} &times; {item.quantity}
+              {item.name} {item.quantity} Dozen
             </li>
           ))}
         </ul>

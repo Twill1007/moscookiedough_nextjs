@@ -11,6 +11,8 @@ export async function GET() {
       .sort({ createdAt: -1 })
       .toArray();
 
+    console.log("What are we getting here?", orders);
+
     return NextResponse.json({ orders }, { status: 200 });
   } catch (error) {
     console.error("Failed to fetch orders:", error);

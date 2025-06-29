@@ -1,6 +1,7 @@
 "use client";
 
 export default function OrderItem({ item, index, onClick }) {
+  console.log(item);
   return (
     <button
       onClick={() => onClick(index)}

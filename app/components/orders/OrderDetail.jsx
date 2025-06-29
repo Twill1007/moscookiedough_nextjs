@@ -5,6 +5,7 @@ import OrderItem from "./OrderItem";
 
 export default function OrderDetail({ order, onClose, setSelectedOrder }) {
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
+
   const selectedItem =
     selectedItemIndex !== null ? order.items[selectedItemIndex] : null;
 
@@ -43,7 +44,10 @@ export default function OrderDetail({ order, onClose, setSelectedOrder }) {
           <p className="text-sm mb-1">📧 {order.email}</p>
           <p className="text-sm mb-1">📞 {order.phone}</p>
           <p className="text-sm mb-1">
-            📍 {order.address.street}, {order.address.city}, {order.address.zip}
+            📍{" "}
+            {order.address
+              ? `${order.address.street}, ${order.address.city} ${order.address.zip}`
+              : "No address on file"}
           </p>
           <p className="text-sm text-gray-500 mb-4">
             🕒 {new Date(order.createdAt).toLocaleString()}
@@ -73,7 +77,7 @@ export default function OrderDetail({ order, onClose, setSelectedOrder }) {
               ×
             </button>
             <h3 className="text-xl font-semibold mb-4">
-              {selectedItem.quantity} Dozen – {selectedItem.flavor}
+              {selectedItem.quantity} Dozen – {selectedItem.item}
             </h3>
             <button
               onClick={handleMarkFilled}

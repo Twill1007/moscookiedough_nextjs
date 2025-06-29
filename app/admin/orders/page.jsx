@@ -67,7 +67,12 @@ export default function Orders() {
                     <span className="font-medium text-lg">{order.name}</span>
                     <span className="block text-sm text-gray-700">
                       {order.items
-                        .map((item) => `${item.quantity} Dozen ${item.flavor}`)
+                        .map(
+                          (item) =>
+                            `${item.quantity} Dozen ${
+                              item.flavor || item.name || "unknown"
+                            }`
+                        )
                         .join(", ")}
                     </span>
                   </button>

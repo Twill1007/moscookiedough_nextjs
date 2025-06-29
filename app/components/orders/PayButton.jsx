@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 
-export default function PayButton({ lineItems, customerName, customerEmail }) {
+export default function PayButton({
+  lineItems,
+  customerName,
+  customerEmail,
+  customerPhone,
+  customerAddress,
+}) {
   const [loading, setLoading] = useState(false);
 
   const handleCheckout = async () => {
@@ -14,8 +20,10 @@ export default function PayButton({ lineItems, customerName, customerEmail }) {
       body: JSON.stringify({
         line_items: lineItems,
         customerInfo: {
-          name: customerName, // ✅ just pass the string
-          email: customerEmail, // ✅ just pass the string
+          name: customerName,
+          email: customerEmail,
+          phone: customerPhone,
+          address: customerAddress, // 👈 Add this line
         },
       }),
     });
