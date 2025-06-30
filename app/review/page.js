@@ -9,8 +9,6 @@ export default function Review() {
   const { checkoutInfo, cart } = useCart();
   const router = useRouter();
 
-  // console.log("cartContext:", checkoutInfo.address.street);
-
   if (!checkoutInfo || !cart || cart.length === 0) {
     router.push("/checkout");
     return null;
@@ -56,7 +54,7 @@ export default function Review() {
         </h1>
 
         {/* Address and contact info */}
-        <div className="mb-8 w-full">
+        <div className="mb-8 w-full text-black">
           <div className="mb-2 text-lg">
             <span className="font-semibold">Name:</span> {checkoutInfo.name}
           </div>
@@ -76,7 +74,7 @@ export default function Review() {
         {/* Cart Items */}
         <div className="mb-8 w-full">
           <h2 className="text-xl font-bold text-pink-700 mb-2">Items:</h2>
-          <ul className="space-y-2">
+          <ul className="space-y-2 text-black">
             {cart.map((item, idx) => (
               <li
                 key={idx}
@@ -107,7 +105,7 @@ export default function Review() {
             lineItems={lineItems} // ✅ Pass the correct Stripe-ready lineItems
             customerName={checkoutInfo?.name}
             customerEmail={checkoutInfo?.email}
-            // customerStreet={checkoutInfo?.address.street}
+            customerAddress={checkoutInfo?.address}
             customerPhone={checkoutInfo?.phone}
           />
 

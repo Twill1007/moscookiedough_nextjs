@@ -29,6 +29,8 @@ export default function OrderDetail({ order, onClose, setSelectedOrder }) {
 
   if (!order) return null;
 
+  console.log("Wait, is this null", selectedItemIndex);
+
   return (
     <>
       {/* Main Overlay */}
@@ -77,7 +79,7 @@ export default function OrderDetail({ order, onClose, setSelectedOrder }) {
               ×
             </button>
             <h3 className="text-xl font-semibold mb-4">
-              {selectedItem.quantity} Dozen – {selectedItem.item}
+              {selectedItem.quantity} Dozen – {selectedItem.name}
             </h3>
             <button
               onClick={handleMarkFilled}

@@ -38,8 +38,8 @@ export default function SuccessPage() {
   return (
     <div className="max-w-lg mx-auto p-8 mt-24">
       <h1 className="text-2xl font-bold mb-4">Thank you for your order!</h1>
-      <p className="mb-6">Order #{order.id}</p>
       <div className="mb-6">
+        <p className="mb-6">Order #{order._id}</p>
         <h2 className="font-semibold">Order Details:</h2>
         <ul className="list-disc ml-6">
           {order.items.map((item, i) => (

@@ -1,7 +1,6 @@
 "use client";
 
 export default function OrderItem({ item, index, onClick }) {
-  console.log(item);
   return (
     <button
       onClick={() => onClick(index)}
@@ -12,7 +11,7 @@ export default function OrderItem({ item, index, onClick }) {
       } cursor-pointer`}
     >
       <span className="font-semibold text-lg">
-        {item.quantity} Dozen – {item.flavor}
+        {item.quantity} Dozen – {item.name}
       </span>
     </button>
   );

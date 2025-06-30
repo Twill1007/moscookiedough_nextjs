@@ -27,7 +27,7 @@ export default function FulfilledOrders({ orders, onSelect }) {
                 <span className="font-medium text-lg">{order.name}</span>
                 <span className="block text-sm text-gray-700">
                   {order.items
-                    .map((item) => `${item.quantity} Dozen ${item.flavor}`)
+                    .map((item) => `${item.quantity} Dozen ${item.name}`)
                     .join(", ")}
                 </span>
               </button>
