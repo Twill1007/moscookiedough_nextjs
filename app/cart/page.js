@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useCart } from "../context/CartContext";
 import quantityOptions from "../constants/quantityOptions";
+import CartButton from "../components/orders/CartButton";
 
 export default function Cart() {
   const { cart, setCart } = useCart();
@@ -65,8 +66,9 @@ export default function Cart() {
                     onClick={() =>
                       handleQuantityChange(index, item.quantity - 1)
                     }
-                    className="w-8 h-8 bg-pink-500 text-white rounded-full flex items-center justify-center hover:bg-pink-700 font-bold text-xl"
+                    className="w-8 h-8 cursor-pointer bg-pink-500 text-white rounded-full flex items-center justify-center hover:bg-pink-700 font-bold text-xl"
                   >
+                    {" "}
                     –
                   </button>
                   <span className="font-semibold text-lg text-gray-800 min-w-[36px] text-center">
@@ -76,7 +78,7 @@ export default function Cart() {
                     onClick={() =>
                       handleQuantityChange(index, item.quantity + 1)
                     }
-                    className="w-8 h-8 bg-pink-500 text-white rounded-full flex items-center justify-center hover:bg-pink-700 font-bold text-xl"
+                    className="w-8 h-8 cursor-pointer bg-pink-500 text-white rounded-full flex items-center justify-center hover:bg-pink-700 font-bold text-xl"
                   >
                     +
                   </button>
@@ -85,7 +87,7 @@ export default function Cart() {
                   </span>
                   <button
                     onClick={() => handleQuantityChange(index, 0)}
-                    className="ml-3 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 font-bold text-lg"
+                    className="ml-3 w-8 h-8 cursor-pointer bg-pink-500 text-white rounded-full flex items-center justify-center hover:bg-pink-700 font-bold text-lg"
                     title="Remove"
                   >
                     ×

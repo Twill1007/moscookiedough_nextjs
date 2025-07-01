@@ -40,7 +40,7 @@ export default function PayButton({
   return (
     <button
       onClick={handleCheckout}
-      className="bg-green-600 cursor-pointer text-white py-2 px-4 rounded"
+      className="bg-pink-600 cursor-pointer text-white py-2 px-4 rounded"
       disabled={loading}
     >
       {loading ? "Redirecting..." : "Pay Now"}

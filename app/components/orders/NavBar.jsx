@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CartButton from "./CartButton";
 
 export default function NavBar() {
   return (
@@ -32,12 +33,7 @@ export default function NavBar() {
         >
           About
         </Link>
-        <Link
-          href="/cart"
-          className="text-pink-700 font-semibold hover:underline"
-        >
-          Cart
-        </Link>
+        <CartButton>Cart</CartButton>
       </div>
     </nav>
   );
