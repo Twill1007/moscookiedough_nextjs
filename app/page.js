@@ -1,6 +1,10 @@
-import Link from "next/link";
+"use client";
+
+import Button from "./components/orders/Button";
+import { useRouter } from "next/navigation";
 
 export default function LandingPage() {
+  const router = useRouter();
   return (
     <div className="min-h-screen w-full bg-white flex flex-col items-center font-sans">
       {/* Nav Bar */}
@@ -43,13 +47,12 @@ export default function LandingPage() {
           Frozen dough delivered to your door—just bake and enjoy warm, fresh
           cookies anytime.
         </p>
-        <Link
-          href="/menu"
-          className="bg-pink-600 hover:bg-pink-700 transition-colors text-white font-bold py-3 px-10 rounded-full text-lg shadow-lg border-2 border-white hover:scale-105 active:scale-95 duration-200"
-          style={{ borderColor: "#7B4A21" }}
+        <Button
+          onClick={() => router.push("/menu")}
+          style={{ minWidth: 200 }}
         >
-          See the Menu
-        </Link>
+          Shop Our Cookies!
+        </Button>
       </section>
 
       {/* Zig-Zag Info Section */}

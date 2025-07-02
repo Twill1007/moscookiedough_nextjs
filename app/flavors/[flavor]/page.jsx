@@ -66,7 +66,7 @@ export default function FlavorPage({ params }) {
     setTimeout(() => {
       setShowOverlay(false);
       router.push("/menu");
-    }, 7000);
+    }, 1500);
   };
 
   const handleQuantityChange = (newValue) => {

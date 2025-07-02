@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import CartButton from "./CartButton";
+import Button from "./Button";
+import { useRouter } from "next/navigation";
 
 export default function NavBar() {
+  const router = useRouter();
   return (
     <nav
       className="
@@ -40,26 +45,8 @@ export default function NavBar() {
         </Link>
       </div>
       <div className="flex gap-4 sm:gap-8 items-center">
-        <Link
-          href="/menu"
-          className="font-semibold text-base sm:text-lg"
-          style={{
-            color: "#7B4A21",
-            fontFamily: "var(--font-geist-sans), Arial, sans-serif",
-          }}
-        >
-          Menu
-        </Link>
-        <Link
-          href="/about"
-          className="font-semibold text-base sm:text-lg"
-          style={{
-            color: "#7B4A21",
-            fontFamily: "var(--font-geist-sans), Arial, sans-serif",
-          }}
-        >
-          About
-        </Link>
+        <Button onClick={() => router.push("/menu")}>Cookies</Button>
+        <Button onClick={() => router.push("/about")}>About</Button>
         <span style={{ display: "flex", alignItems: "center" }}>
           <CartButton
             style={{

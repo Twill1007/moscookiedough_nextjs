@@ -21,7 +21,14 @@ export default function CartButton() {
         style={{ color: "#7B4A21" }}
       />
       {cartCount > 0 && (
-        <span className="absolute -top-2 -right-2 bg-pink-600 text-white text-xs font-bold rounded-full px-2 py-0.5 shadow">
+        <span
+          className="absolute -top-2 -right-2 text-xs font-bold rounded-full px-2 py-0.5 shadow"
+          style={{
+            background: "#7B4A21", // milk chocolate
+            color: "white", // cookie dough/golden text
+            border: "2px solid #FFD59E", // optional: golden border for pop
+          }}
+        >
           {cartCount}
         </span>
       )}
