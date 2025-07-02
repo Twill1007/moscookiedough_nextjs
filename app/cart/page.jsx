@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { useCart } from "../context/CartContext";
 import quantityOptions from "../constants/quantityOptions";
-import CartButton from "../components/orders/CartButton";
 
 export default function Cart() {
   const { cart, setCart } = useCart();

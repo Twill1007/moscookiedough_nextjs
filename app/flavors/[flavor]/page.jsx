@@ -17,6 +17,7 @@ export default function FlavorPage({ params }) {
   const { cart, setCart } = useCart() || { cart: [], setCart: () => {} };
   const [showOverlay, setShowOverlay] = useState(false);
   const [addedFlavor, setAddedFlavor] = useState("");
+  const [addedQuantity, setAddedQuantity] = useState("");
   const [overlayMessage, setOverlayMessage] = useState("");
   const [adjustQuantity, setAdjustQuantity] = useState(null);
   const [selectedQuantity, setSelectedQuantity] = useState(quantityOptions[0]);
@@ -59,12 +60,13 @@ export default function FlavorPage({ params }) {
     ]);
 
     setAddedFlavor(data.name);
+    setAddedQuantity(selectedQuantity.value);
     setShowOverlay(true);
 
     setTimeout(() => {
       setShowOverlay(false);
       router.push("/menu");
-    }, 1500);
+    }, 7000);
   };
 
   const handleQuantityChange = (newValue) => {
@@ -220,7 +222,7 @@ export default function FlavorPage({ params }) {
               </>
             ) : (
               <>
-                <p className="text-lg mb-3">{`${addedFlavor} added to cart!`}</p>
+                <p className="text-lg mb-3">{`${addedQuantity} dozen ${addedFlavor}s added to your cart!`}</p>
               </>
             )}
           </div>

@@ -10,18 +10,43 @@ export default function LandingPage() {
       <div className="h-20" />
 
       {/* Hero Section */}
-      <section className="w-full flex flex-col items-center justify-center py-10 bg-gradient-to-b from-pink-50 to-white border-b border-pink-200 shadow-sm">
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-pink-700 mb-4 drop-shadow text-center font-[cursive]">
-          Cookie Dough. Movie Night Magic.
+      <section
+        className="w-full flex flex-col items-center justify-center py-20 border-b shadow-sm"
+        style={{ background: "#F9F2E7" }}
+      >
+        <h1
+          className="text-8xl sm:text-9xl mb-3 text-center"
+          style={{
+            color: "#7B4A21",
+            fontFamily: "var(--font-chewy), cursive",
+          }}
+        >
+          Mo&apos;s Cookie Dough
         </h1>
-        <p className="text-lg sm:text-xl text-gray-600 mb-8 text-center max-w-xl">
-          Freshly-rolled dough balls delivered to your door—bake when you want
-          or keep them in your freezer for the perfect moment. No mess. No
-          hassle. Just pure joy.
+
+        <h2
+          className="text-3xl sm:text-4xl mb-4 text-center font-bold"
+          style={{
+            color: "#7B4A21",
+            fontFamily: "var(--font-geist-sans), Arial, sans-serif",
+          }}
+        >
+          Bakery-Quality Cookies, Whenever You Want
+        </h2>
+        <p
+          className="text-xl mb-8 text-center"
+          style={{
+            color: "#7B4A21",
+            fontFamily: "var(--font-geist-sans), Arial, sans-serif",
+          }}
+        >
+          Frozen dough delivered to your door—just bake and enjoy warm, fresh
+          cookies anytime.
         </p>
         <Link
           href="/menu"
           className="bg-pink-600 hover:bg-pink-700 transition-colors text-white font-bold py-3 px-10 rounded-full text-lg shadow-lg border-2 border-white hover:scale-105 active:scale-95 duration-200"
+          style={{ borderColor: "#7B4A21" }}
         >
           See the Menu
         </Link>

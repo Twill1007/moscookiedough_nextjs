@@ -16,7 +16,10 @@ export default function CartButton() {
       href="/cart"
       className="relative inline-block"
     >
-      <ShoppingCart className="w-7 h-7 text-pink-700" />
+      <ShoppingCart
+        className="w-7 h-7"
+        style={{ color: "#7B4A21" }}
+      />
       {cartCount > 0 && (
         <span className="absolute -top-2 -right-2 bg-pink-600 text-white text-xs font-bold rounded-full px-2 py-0.5 shadow">
           {cartCount}

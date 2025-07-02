@@ -3,37 +3,72 @@ import CartButton from "./CartButton";
 
 export default function NavBar() {
   return (
-    <nav className="w-full flex justify-between items-center px-8 py-6 bg-white/70 shadow-sm fixed top-0 left-0 z-20">
+    <nav
+      className="
+        w-full flex justify-between items-center
+        px-4 py-4 sm:px-10 sm:py-8
+        fixed top-0 left-0 z-20
+        transition-all
+      "
+      style={{
+        background: "#E5C99B", // Distinct, warm cookie color
+      }}
+    >
       <div className="flex items-center gap-3">
-        {/* Logo (replace with your logo src) */}
         <Link
           href="/"
           className="flex items-center gap-3"
         >
           <img
-            src="/logo.png"
+            src="/cookies/logo.jpg"
             alt="Mo's Dough Logo"
-            className="h-10 w-10 rounded-full object-contain border border-pink-300"
+            className="h-14 w-14 sm:h-14 sm:w-14 rounded-full"
           />
-          <span className="font-extrabold text-2xl text-pink-700">
-            Mo&apos;s Dough
+          <span
+            style={{
+              color: "#7B4A21",
+              fontFamily: "var(--font-chewy), cursive",
+              fontSize: "2.3rem", // Bigger font!
+              fontWeight: 400,
+              letterSpacing: "1px",
+              lineHeight: 1,
+            }}
+            className="sm:text-5xl text-3xl"
+          >
+            Mo&apos;s Cookie Dough
           </span>
         </Link>
       </div>
-      <div className="flex gap-6">
+      <div className="flex gap-4 sm:gap-8 items-center">
         <Link
           href="/menu"
-          className="text-pink-700 font-semibold hover:underline"
+          className="font-semibold text-base sm:text-lg"
+          style={{
+            color: "#7B4A21",
+            fontFamily: "var(--font-geist-sans), Arial, sans-serif",
+          }}
         >
           Menu
         </Link>
         <Link
           href="/about"
-          className="text-pink-700 font-semibold hover:underline"
+          className="font-semibold text-base sm:text-lg"
+          style={{
+            color: "#7B4A21",
+            fontFamily: "var(--font-geist-sans), Arial, sans-serif",
+          }}
         >
           About
         </Link>
-        <CartButton>Cart</CartButton>
+        <span style={{ display: "flex", alignItems: "center" }}>
+          <CartButton
+            style={{
+              color: "#7B4A21",
+              fontFamily: "var(--font-geist-sans), Arial, sans-serif",
+              fontSize: "1.5rem",
+            }}
+          />
+        </span>
       </div>
     </nav>
   );

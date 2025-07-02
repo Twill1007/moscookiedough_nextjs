@@ -8,24 +8,9 @@ export default function Menu() {
     <div className="min-h-screen bg-white w-full pt-24">
       <div className="w-full flex flex-col items-center py-8 px-4">
         <div className="w-full max-w-5xl mb-10 text-center px-4">
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-3 text-pink-700 drop-shadow">
-            <span
-              role="img"
-              aria-label="sparkles"
-            >
-              ✨
-            </span>{" "}
-            Mo&apos;s Cookie Dough{" "}
-            <span
-              role="img"
-              aria-label="sparkles"
-            >
-              ✨
-            </span>
-          </h1>
-          <h2 className="text-xl sm:text-2xl mb-8 text-pink-700 font-semibold">
+          <h1 className="text-xl sm:text-2xl mb-8 text-pink-700 font-semibold">
             Choose Your Flavor
-          </h2>
+          </h1>
         </div>
 
         <div className="w-full flex flex-col gap-12 max-w-5xl">
