@@ -50,16 +50,27 @@ export default function Menu() {
                   className="group flex-1 min-h-[200px] flex bg-gray-50 items-center justify-center"
                   tabIndex={0}
                 >
-                  <div
-                    className="w-64 h-64 md:w-72 md:h-72 rounded-full bg-white border-4 border-pink-100 shadow-lg flex items-center justify-center overflow-hidden transition-transform hover:scale-105 cursor-pointer"
-                    style={{
-                      backgroundImage: `url(/cookies/${slug}.jpg)`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                    }}
-                  >
-                    {/* Remove this if you have real images */}
-                    {/* <span className="text-pink-300 text-lg">{name}</span> */}
+                  <div className="w-64 h-64 md:w-72 md:h-72 rounded-full border-4 border-pink-100 shadow-lg flex items-center justify-center overflow-hidden transition-transform hover:scale-105 cursor-pointer relative group">
+                    {/* Cookie dough image (bottom) */}
+                    <div
+                      className="absolute inset-0 w-full h-full"
+                      style={{
+                        backgroundImage: `url(/cookies/${slug}.jpg)`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        zIndex: 1,
+                      }}
+                    />
+                    {/* Baked cookie image (top, fades in on hover) */}
+                    <div
+                      className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{
+                        backgroundImage: `url(/cookies/${slug}-baked.jpg)`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        zIndex: 2,
+                      }}
+                    />
                   </div>
                 </Link>
                 {/* Text Side */}

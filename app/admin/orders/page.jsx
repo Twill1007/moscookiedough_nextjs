@@ -35,7 +35,7 @@ export default function Orders() {
   );
 
   return (
-    <div className="p-6 max-w-4xl mt-10 text-black mx-auto relative">
+    <div className="min-h-screen p-6 max-w-4xl mt-10 text-black mx-auto relative">
       <h1 className="text-3xl font-bold mt-10 text-amber-600 mb-6">
         Admin Orders
       </h1>

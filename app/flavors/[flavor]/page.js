@@ -7,6 +7,7 @@ import flavorData from "@/app/constants/cookieFlavors";
 import quantityOptions from "@/app/constants/quantityOptions";
 
 export default function FlavorPage({ params }) {
+  console.log("FlavorPage rendered");
   const flavor = params.flavor;
   const data = flavorData[flavor] || {
     name: "Unknown Flavor",
@@ -59,6 +60,11 @@ export default function FlavorPage({ params }) {
 
     setAddedFlavor(data.name);
     setShowOverlay(true);
+
+    setTimeout(() => {
+      setShowOverlay(false);
+      router.push("/menu");
+    }, 1500);
   };
 
   const handleQuantityChange = (newValue) => {
@@ -89,6 +95,7 @@ export default function FlavorPage({ params }) {
 
       setShowOverlay(false);
       setAdjustQuantity(null);
+      router.push("/menu");
     }
   };
 
@@ -175,7 +182,7 @@ export default function FlavorPage({ params }) {
 
       {/* Overlay */}
       {showOverlay && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 flex items-center justify-center z-50 p-4 backdrop-blur">
           <div className="bg-white text-pink-800 p-6 rounded-xl shadow-lg w-full max-w-sm overflow-auto text-center">
             {adjustQuantity ? (
               <>
@@ -214,12 +221,6 @@ export default function FlavorPage({ params }) {
             ) : (
               <>
                 <p className="text-lg mb-3">{`${addedFlavor} added to cart!`}</p>
-                <button
-                  onClick={closeOverlay}
-                  className="mt-2 px-4 py-2 bg-pink-600 text-white rounded-full hover:bg-pink-700 transition-colors"
-                >
-                  Close
-                </button>
               </>
             )}
           </div>

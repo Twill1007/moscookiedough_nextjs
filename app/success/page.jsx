@@ -28,15 +28,15 @@ export default function SuccessPage() {
 
   if (!order) {
     return (
-      <div className="p-8 text-center">
-        <h1 className="text-2xl font-bold mb-4">Order Not Found</h1>
+      <div className="p-8 text-center min-h-screen">
+        <h1 className="text-2xl font-bold mb-4 mt-24">Order Not Found</h1>
         <p>Sorry, we couldn't find your order.</p>
       </div>
     );
   }
 
   return (
-    <div className="max-w-lg mx-auto p-8 mt-24">
+    <div className="max-w-lg mx-auto p-8 mt-24 min-h-screen">
       <h1 className="text-2xl font-bold mb-4">Thank you for your order!</h1>
       <div className="mb-6">
         <p className="mb-6">Order #{order._id}</p>
