@@ -7,7 +7,6 @@ import flavorData from "@/app/constants/cookieFlavors";
 import quantityOptions from "@/app/constants/quantityOptions";
 
 export default function FlavorPage({ params }) {
-  console.log("FlavorPage rendered");
   const flavor = params.flavor;
   const data = flavorData[flavor] || {
     name: "Unknown Flavor",
@@ -24,11 +23,7 @@ export default function FlavorPage({ params }) {
   const router = useRouter();
 
   const handleAddToCart = () => {
-    if (!Array.isArray(cart)) {
-      console.error("Cart is not an array:", cart);
-      setCart([]);
-    }
-
+    if (!Array.isArray(cart)) setCart([]);
     const existingItems = cart.filter((item) => item.slug === flavor);
     const currentFlavorTotal = existingItems.reduce(
       (sum, item) => sum + item.quantity,
@@ -43,7 +38,7 @@ export default function FlavorPage({ params }) {
       });
       setShowOverlay(true);
       setOverlayMessage(
-        "You already have this cookie in the cart, would you like to change the quantity?"
+        "You already have this cookie in the cart. Would you like to change the quantity?"
       );
       return;
     }
@@ -108,34 +103,17 @@ export default function FlavorPage({ params }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF2F6] flex items-center justify-center py-0 px-0">
-      <div className="w-full max-w-2xl bg-[#FFF2F6] text-center py-12 px-2 sm:px-4">
-        {/* Fun headline */}
-        <div className="mb-7">
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-pink-700 mb-2 drop-shadow">
-            <span
-              role="img"
-              aria-label="sparkles"
-            >
-              ✨
-            </span>{" "}
-            Shop By Flavor{" "}
-            <span
-              role="img"
-              aria-label="sparkles"
-            >
-              ✨
-            </span>
-          </h1>
-        </div>
+    <div className="min-h-screen bg-[#FFF5EA] flex items-center justify-center py-0 px-0">
+      <div className="w-full max-w-2xl bg-[#FFF5EA] text-center py-12 px-2 sm:px-4">
+        {/* Headline */}
 
-        {/* Main content */}
-        <div className="bg-white rounded-2xl shadow-md mx-auto max-w-md py-10 px-6">
-          <h2 className="text-2xl font-extrabold text-pink-700 mb-2">
-            {data.name}
+        {/* Main card */}
+        <div className="bg-white rounded-3xl shadow-lg mx-auto max-w-md py-10 px-6 border-4 border-[#F3E0C7]">
+          <h2 className="text-3xl font-extrabold text-[#7B4A21] mb-2 font-[cursive] flex items-center justify-center gap-2">
+            {data.name}{" "}
           </h2>
-          <p className="text-base text-gray-700 mb-6">{data.description}</p>
-          <label className="block text-base font-bold text-pink-700 mb-1 text-left">
+          <p className="text-lg text-[#A17043] mb-6">{data.description}</p>
+          <label className="block text-base font-bold text-[#A17043] mb-1 text-left">
             Select Quantity
           </label>
           <select
@@ -146,7 +124,7 @@ export default function FlavorPage({ params }) {
                 quantityOptions.find((opt) => opt.label === e.target.value)
               )
             }
-            className="w-full px-4 py-2 border border-pink-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-400 text-black bg-pink-50 mb-4"
+            className="w-full px-4 py-2 border border-[#D2A06E] rounded-md focus:outline-none focus:ring-2 focus:ring-[#7B4A21] text-[#7B4A21] bg-[#F3E0C7] mb-4"
           >
             {quantityOptions.map((option) => (
               <option
@@ -159,22 +137,22 @@ export default function FlavorPage({ params }) {
           </select>
 
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center gap-3 w-full">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 w-full mt-4">
             <button
               onClick={handleAddToCart}
-              className="bg-pink-600 text-white px-5 py-2 text-base rounded-full font-bold shadow-sm hover:bg-pink-700 transition-colors cursor-pointer w-full sm:w-auto"
+              className="bg-[#7B4A21] text-white px-5 py-2 text-lg rounded-full font-bold shadow-sm hover:bg-[#A17043] hover:scale-105 transition-all duration-150 cursor-pointer w-full sm:w-auto"
             >
               Add to Cart
             </button>
             <Link
               href="/menu"
-              className="bg-white border border-pink-300 text-pink-700 px-5 py-2 text-base rounded-full font-bold shadow-sm hover:bg-pink-50 transition-colors cursor-pointer w-full sm:w-auto text-center"
+              className="bg-white border border-[#D2A06E] text-[#7B4A21] px-5 py-2 text-lg rounded-full font-bold shadow-sm hover:bg-[#F3E0C7] hover:scale-105 transition-all duration-150 cursor-pointer w-full sm:w-auto text-center"
             >
               Back to Flavors
             </Link>
             <Link
               href="/cart"
-              className="bg-white border border-pink-300 text-pink-700 px-5 py-2 text-base rounded-full font-bold shadow-sm hover:bg-pink-50 transition-colors cursor-pointer w-full sm:w-auto text-center"
+              className="bg-white border border-[#D2A06E] text-[#7B4A21] px-5 py-2 text-lg rounded-full font-bold shadow-sm hover:bg-[#F3E0C7] hover:scale-105 transition-all duration-150 cursor-pointer w-full sm:w-auto text-center"
             >
               Go to Cart
             </Link>
@@ -185,16 +163,16 @@ export default function FlavorPage({ params }) {
       {/* Overlay */}
       {showOverlay && (
         <div className="fixed inset-0 flex items-center justify-center z-50 p-4 backdrop-blur">
-          <div className="bg-white text-pink-800 p-6 rounded-xl shadow-lg w-full max-w-sm overflow-auto text-center">
+          <div className="bg-white text-[#7B4A21] p-6 rounded-xl shadow-lg w-full max-w-sm overflow-auto text-center border-4 border-[#F3E0C7]">
             {adjustQuantity ? (
               <>
-                <p className="text-lg mb-3">{overlayMessage}</p>
+                <p className="text-xl mb-3">{overlayMessage}</p>
                 <select
                   value={adjustQuantity.newQuantity}
                   onChange={(e) =>
                     handleQuantityChange(parseInt(e.target.value))
                   }
-                  className="mt-2 w-full px-4 py-2 border border-pink-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-400 text-black bg-pink-50"
+                  className="mt-2 w-full px-4 py-2 border border-[#D2A06E] rounded-md focus:outline-none focus:ring-2 focus:ring-[#7B4A21] text-[#7B4A21] bg-[#F3E0C7]"
                 >
                   {quantityOptions.map((option) => (
                     <option
@@ -208,13 +186,13 @@ export default function FlavorPage({ params }) {
                 <div className="mt-4 flex justify-center gap-3 flex-wrap">
                   <button
                     onClick={confirmQuantityChange}
-                    className="px-4 py-2 bg-pink-600 text-white rounded-full hover:bg-pink-700 transition-colors"
+                    className="px-4 py-2 bg-[#7B4A21] text-white rounded-full hover:bg-[#A17043] transition-colors"
                   >
                     Confirm
                   </button>
                   <button
                     onClick={closeOverlay}
-                    className="px-4 py-2 bg-pink-200 text-pink-800 rounded-full hover:bg-pink-300 transition-colors"
+                    className="px-4 py-2 bg-[#F3E0C7] text-[#7B4A21] rounded-full hover:bg-[#FFF5EA] transition-colors"
                   >
                     Cancel
                   </button>
@@ -222,7 +200,9 @@ export default function FlavorPage({ params }) {
               </>
             ) : (
               <>
-                <p className="text-lg mb-3">{`${addedQuantity} dozen ${addedFlavor}s added to your cart!`}</p>
+                <p className="text-xl mb-3">
+                  {`${addedQuantity} dozen ${addedFlavor}s added to your cart!`}
+                </p>
               </>
             )}
           </div>

@@ -40,10 +40,16 @@ export default function PayButton({
   return (
     <button
       onClick={handleCheckout}
-      className="bg-pink-600 cursor-pointer text-white py-2 px-4 rounded"
+      className={`
+        flex-1 bg-[#7B4A21] 
+        cursor-pointer text-white py-3 px-6 rounded-full 
+        font-bold text-xl shadow
+        hover:bg-[#A17043] transition
+        disabled:opacity-60 disabled:cursor-not-allowed
+      `}
       disabled={loading}
     >
-      {loading ? "Redirecting..." : "Pay Now"}
+      {loading ? "Redirecting..." : <>Pay Now</>}
     </button>
   );
 }

@@ -39,13 +39,15 @@ export default function Cart() {
   const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
 
   return (
-    <div className="min-h-screen bg-[#FFF2F6] pt-24 w-full flex items-center justify-center px-2">
-      <div className="w-full max-w-2xl bg-white/90 rounded-2xl shadow-lg border border-pink-100 px-6 py-10 flex flex-col items-center">
-        <h1 className="text-4xl font-extrabold text-pink-700 mb-8 drop-shadow text-center">
-          Shopping Cart
-        </h1>
+    <div className="min-h-screen bg-white pt-24 w-full flex flex-col items-center justify-center px-2">
+      {/* Header OUTSIDE card */}
+      <h1 className="text-5xl font-extrabold text-[#7B4A21] mb-8 drop-shadow text-center font-[cursive] flex items-center gap-2">
+        Shopping Cart
+      </h1>
+      {/* Cart Card */}
+      <div className="w-full max-w-2xl bg-white/90 rounded-3xl shadow-lg border-4 border-[#F3E0C7] px-6 py-12 flex flex-col items-center">
         {cart.length === 0 ? (
-          <p className="text-lg sm:text-xl text-gray-600 mb-8">
+          <p className="text-2xl text-[#A17043] mb-8">
             Your cart is currently empty.
           </p>
         ) : (
@@ -53,11 +55,11 @@ export default function Cart() {
             {cart.map((item, index) => (
               <div
                 key={index}
-                className="flex flex-col sm:flex-row items-center justify-between bg-white rounded-xl shadow p-5 border border-gray-100"
+                className="flex flex-col sm:flex-row items-center justify-between bg-[#F3E0C7] rounded-xl shadow p-5 border-2 border-[#E2BA85]"
               >
-                <span className="font-bold text-lg sm:text-xl text-pink-700 mb-2 sm:mb-0">
+                <span className="font-bold text-2xl text-[#7B4A21] mb-2 sm:mb-0">
                   {item.name}{" "}
-                  <span className="text-base text-gray-700 font-normal">
+                  <span className="text-base text-[#A17043] font-normal">
                     ({item.quantity} dozen)
                   </span>
                 </span>
@@ -66,28 +68,27 @@ export default function Cart() {
                     onClick={() =>
                       handleQuantityChange(index, item.quantity - 1)
                     }
-                    className="w-8 h-8 cursor-pointer bg-pink-500 text-white rounded-full flex items-center justify-center hover:bg-pink-700 font-bold text-xl"
+                    className="w-9 h-9 cursor-pointer bg-[#A17043] text-white rounded-full flex items-center justify-center hover:bg-[#7B4A21] font-bold text-2xl"
                   >
-                    {" "}
                     –
                   </button>
-                  <span className="font-semibold text-lg text-gray-800 min-w-[36px] text-center">
+                  <span className="font-semibold text-xl text-[#7B4A21] min-w-[36px] text-center">
                     {item.quantity}
                   </span>
                   <button
                     onClick={() =>
                       handleQuantityChange(index, item.quantity + 1)
                     }
-                    className="w-8 h-8 cursor-pointer bg-pink-500 text-white rounded-full flex items-center justify-center hover:bg-pink-700 font-bold text-xl"
+                    className="w-9 h-9 cursor-pointer bg-[#A17043] text-white rounded-full flex items-center justify-center hover:bg-[#7B4A21] font-bold text-2xl"
                   >
                     +
                   </button>
-                  <span className="ml-3 text-pink-700 font-bold text-base">
+                  <span className="ml-3 text-[#A17043] font-bold text-lg">
                     ${item.price}
                   </span>
                   <button
                     onClick={() => handleQuantityChange(index, 0)}
-                    className="ml-3 w-8 h-8 cursor-pointer bg-pink-500 text-white rounded-full flex items-center justify-center hover:bg-pink-700 font-bold text-lg"
+                    className="ml-3 w-9 h-9 cursor-pointer bg-[#D2A06E] text-[#7B4A21] rounded-full flex items-center justify-center hover:bg-[#E2BA85] font-bold text-xl"
                     title="Remove"
                   >
                     ×
@@ -96,7 +97,7 @@ export default function Cart() {
               </div>
             ))}
             <div className="flex justify-end">
-              <div className="text-2xl font-bold text-pink-700">
+              <div className="text-3xl font-bold text-[#7B4A21]">
                 Total: ${totalAmount.toFixed(2)}
               </div>
             </div>
@@ -106,14 +107,14 @@ export default function Cart() {
         <div className="flex flex-col sm:flex-row gap-4 w-full justify-center mt-2">
           <Link
             href="/"
-            className="w-full sm:w-auto inline-block bg-pink-500 text-white font-semibold text-lg px-6 py-3 rounded-full shadow hover:bg-pink-700 transition text-center"
+            className="w-full sm:w-auto inline-block bg-[#A17043] text-white font-semibold text-xl px-7 py-4 rounded-full shadow hover:bg-[#7B4A21] transition text-center"
           >
             Back to Home Page
           </Link>
           {cart.length > 0 && (
             <Link
               href="/checkout"
-              className="w-full sm:w-auto inline-block bg-pink-500 text-white font-semibold text-lg px-6 py-3 rounded-full shadow hover:bg-pink-700 transition text-center"
+              className="w-full sm:w-auto inline-block bg-[#7B4A21] text-white font-semibold text-xl px-7 py-4 rounded-full shadow hover:bg-[#A17043] transition text-center"
             >
               Proceed to Checkout
             </Link>
@@ -122,9 +123,9 @@ export default function Cart() {
       </div>
 
       {showOverlay && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-4">
-          <div className="bg-white p-8 rounded-xl shadow-lg text-center max-w-sm w-full">
-            <p className="text-lg text-gray-800">{overlayMessage}</p>
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 px-4">
+          <div className="bg-white p-8 rounded-2xl shadow-lg text-center max-w-sm w-full border-4 border-[#F3E0C7]">
+            <p className="text-xl text-[#7B4A21] mb-3">{overlayMessage}</p>
             <Button onClick={() => setShowOverlay(false)}>Close</Button>
           </div>
         </div>

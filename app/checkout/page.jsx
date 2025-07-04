@@ -63,41 +63,53 @@ export default function Checkout() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF2F6] flex items-center justify-center py-20 px-2">
-      <div className="w-full max-w-2xl bg-white/90 rounded-2xl shadow-lg border border-pink-100 px-8 py-10 flex flex-col items-center">
-        <h1 className="text-4xl font-extrabold text-pink-700 mb-6 drop-shadow text-center">
+    <div className="min-h-screen bg-[#FFF5EA] flex items-center justify-center py-20 px-2">
+      <div className="w-full max-w-2xl bg-white/90 rounded-3xl shadow-lg border-4 border-[#F3E0C7] px-8 py-12 flex flex-col items-center">
+        <h1 className="text-5xl font-extrabold text-[#7B4A21] mb-8 drop-shadow text-center font-[cursive] flex items-center gap-2">
+          <span
+            role="img"
+            aria-label="cookie"
+          >
+            🍪
+          </span>
           Checkout
+          <span
+            role="img"
+            aria-label="cookie"
+          >
+            🍪
+          </span>
         </h1>
 
         {cart.length === 0 ? (
-          <p className="text-xl text-gray-600 mb-8">
+          <p className="text-2xl text-[#A17043] mb-8">
             Your cart is empty. Please add items to proceed.
           </p>
         ) : (
           <>
             <div className="w-full mb-8">
-              <h2 className="text-xl font-bold text-pink-700 mb-2">
+              <h2 className="text-2xl font-bold text-[#A17043] mb-2 font-[cursive]">
                 Your Order
               </h2>
               <ul className="space-y-2">
                 {cart.map((item, idx) => (
                   <li
                     key={idx}
-                    className="flex justify-between items-center bg-pink-50 rounded-lg px-4 py-2"
+                    className="flex justify-between items-center bg-[#F3E0C7] rounded-xl px-4 py-2 border-2 border-[#E2BA85]"
                   >
-                    <span className="font-semibold text-pink-700">
+                    <span className="font-semibold text-[#7B4A21] text-lg">
                       {item.name}{" "}
-                      <span className="text-gray-700 font-normal">
+                      <span className="text-[#A17043] font-normal">
                         ({item.quantity} dozen)
                       </span>
                     </span>
-                    <span className="font-bold text-pink-700">
+                    <span className="font-bold text-[#7B4A21] text-lg">
                       ${item.price}
                     </span>
                   </li>
                 ))}
               </ul>
-              <div className="flex justify-end mt-5 text-2xl font-bold text-pink-700">
+              <div className="flex justify-end mt-5 text-2xl font-bold text-[#7B4A21]">
                 Total: ${totalAmount}
               </div>
             </div>
@@ -108,7 +120,7 @@ export default function Checkout() {
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-pink-700 font-semibold mb-1"
+                  className="block text-[#A17043] font-semibold mb-1"
                 >
                   Full Name
                 </label>
@@ -117,13 +129,13 @@ export default function Checkout() {
                   id="name"
                   name="name"
                   required
-                  className="mt-1 block w-full px-4 py-3 border border-pink-200 rounded-xl text-black focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition"
+                  className="mt-1 block w-full px-4 py-3 border border-[#F3E0C7] rounded-xl text-[#7B4A21] bg-[#FFF5EA] focus:outline-none focus:ring-2 focus:ring-[#A17043] focus:border-[#A17043] transition"
                 />
               </div>
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-pink-700 font-semibold mb-1"
+                  className="block text-[#A17043] font-semibold mb-1"
                 >
                   Email
                 </label>
@@ -132,13 +144,13 @@ export default function Checkout() {
                   id="email"
                   name="email"
                   required
-                  className="mt-1 block w-full px-4 py-3 border border-pink-200 rounded-xl text-black focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition"
+                  className="mt-1 block w-full px-4 py-3 border border-[#F3E0C7] rounded-xl text-[#7B4A21] bg-[#FFF5EA] focus:outline-none focus:ring-2 focus:ring-[#A17043] focus:border-[#A17043] transition"
                 />
               </div>
               <div>
                 <label
                   htmlFor="phone"
-                  className="block text-pink-700 font-semibold mb-1"
+                  className="block text-[#A17043] font-semibold mb-1"
                 >
                   Phone Number
                 </label>
@@ -147,47 +159,47 @@ export default function Checkout() {
                   id="phone"
                   name="phone"
                   required
-                  className="mt-1 block w-full px-4 py-3 border border-pink-200 rounded-xl text-black focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition"
+                  className="mt-1 block w-full px-4 py-3 border border-[#F3E0C7] rounded-xl text-[#7B4A21] bg-[#FFF5EA] focus:outline-none focus:ring-2 focus:ring-[#A17043] focus:border-[#A17043] transition"
                 />
               </div>
               <div>
-                <label className="block text-pink-700 font-semibold mb-1">
+                <label className="block text-[#A17043] font-semibold mb-1">
                   Street Address
                 </label>
                 <input
                   type="text"
                   name="street"
                   required
-                  className="mt-1 block w-full px-4 py-3 border border-pink-200 rounded-xl text-black focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition"
+                  className="mt-1 block w-full px-4 py-3 border border-[#F3E0C7] rounded-xl text-[#7B4A21] bg-[#FFF5EA] focus:outline-none focus:ring-2 focus:ring-[#A17043] focus:border-[#A17043] transition"
                 />
               </div>
               <div className="flex space-x-4">
                 <div className="w-1/2">
-                  <label className="block text-pink-700 font-semibold mb-1">
+                  <label className="block text-[#A17043] font-semibold mb-1">
                     City
                   </label>
                   <input
                     type="text"
                     name="city"
                     required
-                    className="mt-1 block w-full px-4 py-3 border border-pink-200 rounded-xl text-black focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition"
+                    className="mt-1 block w-full px-4 py-3 border border-[#F3E0C7] rounded-xl text-[#7B4A21] bg-[#FFF5EA] focus:outline-none focus:ring-2 focus:ring-[#A17043] focus:border-[#A17043] transition"
                   />
                 </div>
                 <div className="w-1/2">
-                  <label className="block text-pink-700 font-semibold mb-1">
+                  <label className="block text-[#A17043] font-semibold mb-1">
                     Zip Code
                   </label>
                   <input
                     type="text"
                     name="zip"
                     required
-                    className="mt-1 block w-full px-4 py-3 border border-pink-200 rounded-xl text-black focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition"
+                    className="mt-1 block w-full px-4 py-3 border border-[#F3E0C7] rounded-xl text-[#7B4A21] bg-[#FFF5EA] focus:outline-none focus:ring-2 focus:ring-[#A17043] focus:border-[#A17043] transition"
                   />
                 </div>
               </div>
               <button
                 type="submit"
-                className="w-full cursor-pointer bg-pink-500 text-white font-bold text-lg px-4 py-3 rounded-full shadow hover:bg-pink-700 transition"
+                className="w-full cursor-pointer bg-[#A17043] text-white font-bold text-xl px-4 py-4 rounded-full shadow hover:bg-[#7B4A21] transition"
               >
                 Review Order
               </button>
@@ -198,7 +210,7 @@ export default function Checkout() {
         <div className="mt-8 text-center">
           <Link
             href="/cart"
-            className="text-pink-700 hover:underline text-lg font-semibold"
+            className="text-[#A17043] hover:underline text-lg font-semibold"
           >
             ← Back to Cart
           </Link>

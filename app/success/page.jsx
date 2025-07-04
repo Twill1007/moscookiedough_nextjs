@@ -29,7 +29,7 @@ export default function SuccessPage() {
   if (!order) {
     return (
       <div className="p-8 text-center min-h-screen">
-        <h1 className="text-2xl font-bold mb-4 mt-24">Order Not Found</h1>
+        <h1 className="text-2xl font-bold mb-24 mt-24">Order Not Found</h1>
         <p>Sorry, we couldn't find your order.</p>
       </div>
     );

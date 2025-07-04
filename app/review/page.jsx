@@ -27,44 +27,37 @@ export default function Review() {
 
   const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
 
-  // try {
-  //   const response = await fetch("/api/orders", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(order),
-  //   });
-
-  //   if (response.ok) {
-  //     alert("Order placed successfully!!");
-  //     setCart([]);
-  //     form.reset();
-  //   } else {
-  //     alert("Failed to place order.");
-  //   }
-  // } catch (err) {
-  //   console.error("Error submitting order:", err);
-  //   alert("An error occurred while placing your order.");
-  // }
-
   return (
-    <div className="min-h-screen bg-[#FFF2F6] pt-24 w-full flex items-center justify-center px-2">
-      <div className="w-full max-w-2xl bg-white/90 rounded-2xl shadow-lg border border-pink-100 px-6 py-10 flex flex-col items-center">
-        <h1 className="text-4xl font-extrabold text-pink-700 mb-8 drop-shadow text-center">
+    <div className="min-h-screen bg-[#FFF5EA] pt-24 w-full flex items-center justify-center px-2">
+      <div className="w-full max-w-2xl bg-white/90 rounded-3xl shadow-lg border-4 border-[#F3E0C7] px-8 py-12 flex flex-col items-center">
+        <h1 className="text-5xl font-extrabold text-[#7B4A21] mb-8 drop-shadow text-center font-[cursive] flex items-center gap-2">
+          <span
+            role="img"
+            aria-label="cookie"
+          >
+            🍪
+          </span>
           Review Your Order
+          <span
+            role="img"
+            aria-label="cookie"
+          >
+            🍪
+          </span>
         </h1>
 
         {/* Address and contact info */}
-        <div className="mb-8 w-full text-black">
-          <div className="mb-2 text-lg">
+        <div className="mb-8 w-full text-[#7B4A21]">
+          <div className="mb-2 text-xl">
             <span className="font-semibold">Name:</span> {checkoutInfo.name}
           </div>
-          <div className="mb-2 text-lg">
+          <div className="mb-2 text-xl">
             <span className="font-semibold">Email:</span> {checkoutInfo.email}
           </div>
-          <div className="mb-2 text-lg">
+          <div className="mb-2 text-xl">
             <span className="font-semibold">Phone:</span> {checkoutInfo.phone}
           </div>
-          <div className="mb-2 text-lg">
+          <div className="mb-2 text-xl">
             <span className="font-semibold">Address:</span>{" "}
             {checkoutInfo.address.street}, {checkoutInfo.address.city}{" "}
             {checkoutInfo.address.zip}
@@ -73,21 +66,23 @@ export default function Review() {
 
         {/* Cart Items */}
         <div className="mb-8 w-full">
-          <h2 className="text-xl font-bold text-pink-700 mb-2">Items:</h2>
-          <ul className="space-y-2 text-black">
+          <h2 className="text-2xl font-bold text-[#A17043] mb-2 font-[cursive]">
+            Items:
+          </h2>
+          <ul className="space-y-2 text-[#7B4A21] text-lg">
             {cart.map((item, idx) => (
               <li
                 key={idx}
-                className="flex justify-between items-center"
+                className="flex justify-between items-center bg-[#F3E0C7] rounded-xl px-4 py-2 border-2 border-[#E2BA85]"
               >
                 <span>
                   {item.name} ({item.quantity} dozen)
                 </span>
-                <span>${item.price}</span>
+                <span className="font-bold">${item.price}</span>
               </li>
             ))}
           </ul>
-          <div className="flex justify-end mt-4 text-xl font-bold text-pink-700">
+          <div className="flex justify-end mt-4 text-2xl font-bold text-[#7B4A21]">
             Total: ${totalAmount.toFixed(2)}
           </div>
         </div>
@@ -96,20 +91,18 @@ export default function Review() {
         <div className="flex gap-4 w-full">
           <Link
             href="/checkout"
-            className="flex-1 bg-gray-200 text-gray-800 rounded-full py-3 px-6 font-semibold hover:bg-gray-300 text-center"
+            className="flex-1 bg-[#E2BA85] text-[#7B4A21] rounded-full py-3 px-6 font-semibold hover:bg-[#F3E0C7] text-center transition"
           >
             Back to Edit
           </Link>
 
           <PayButton
-            lineItems={lineItems} // ✅ Pass the correct Stripe-ready lineItems
+            lineItems={lineItems}
             customerName={checkoutInfo?.name}
             customerEmail={checkoutInfo?.email}
             customerAddress={checkoutInfo?.address}
             customerPhone={checkoutInfo?.phone}
           />
-
-          {/* Or your Stripe logic here */}
         </div>
       </div>
     </div>
