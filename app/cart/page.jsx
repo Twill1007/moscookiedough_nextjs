@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useCart } from "../context/CartContext";
 import quantityOptions from "../constants/quantityOptions";
+import Button from "../components/orders/Button";
 
 export default function Cart() {
   const { cart, setCart } = useCart();
@@ -124,12 +125,7 @@ export default function Cart() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-4">
           <div className="bg-white p-8 rounded-xl shadow-lg text-center max-w-sm w-full">
             <p className="text-lg text-gray-800">{overlayMessage}</p>
-            <button
-              onClick={() => setShowOverlay(false)}
-              className="mt-4 px-5 py-2 bg-pink-500 text-white rounded-full hover:bg-pink-700 font-semibold"
-            >
-              Close
-            </button>
+            <Button onClick={() => setShowOverlay(false)}>Close</Button>
           </div>
         </div>
       )}

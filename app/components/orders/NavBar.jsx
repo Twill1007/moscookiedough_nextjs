@@ -11,13 +11,10 @@ export default function NavBar() {
     <nav
       className="
         w-full flex justify-between items-center
-        px-4 py-4 sm:px-10 sm:py-8
+        px-4 py-2 sm:px-10 sm:py-8
         fixed top-0 left-0 z-20
         transition-all
       "
-      style={{
-        background: "#E5C99B", // Distinct, warm cookie color
-      }}
     >
       <div className="flex items-center gap-3">
         <Link

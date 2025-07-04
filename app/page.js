@@ -16,7 +16,7 @@ export default function LandingPage() {
       {/* Hero Section */}
       <section
         className="w-full flex flex-col items-center justify-center py-20 border-b shadow-sm"
-        style={{ background: "#F9F2E7" }}
+        style={{ background: "#E5C99B" }}
       >
         <h1
           className="text-8xl sm:text-9xl mb-3 text-center"
