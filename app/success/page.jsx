@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function SuccessPage() {
+function SuccessContent() {
   const searchParams = useSearchParams();
   const session_id = searchParams.get("session_id");
 
@@ -12,7 +12,6 @@ export default function SuccessPage() {
 
   useEffect(() => {
     if (session_id) {
-      // Fetch the session details from your API
       fetch(`/api/get-order?session_id=${session_id}`)
         .then((res) => res.json())
         .then((data) => {
@@ -56,5 +55,13 @@ export default function SuccessPage() {
         You’ll receive an email confirmation soon.
       </div>
     </div>
+  );
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center">Loading...</div>}>
+      <SuccessContent />
+    </Suspense>
   );
 }
