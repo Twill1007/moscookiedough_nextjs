@@ -95,14 +95,14 @@ export default function Review() {
           >
             Back to Edit
           </Link>
-          {/* 
+
           <PayButton
             lineItems={lineItems}
             customerName={checkoutInfo?.name}
             customerEmail={checkoutInfo?.email}
             customerAddress={checkoutInfo?.address}
             customerPhone={checkoutInfo?.phone}
-          /> */}
+          />
         </div>
       </div>
     </div>

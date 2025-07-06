@@ -29,7 +29,7 @@ export default function PayButton({
     });
 
     const data = await res.json();
-    if (data.url) {
+    if (typeof window !== "undefined") {
       window.location.href = data.url;
     } else {
       alert("Checkout failed: " + data.error);
