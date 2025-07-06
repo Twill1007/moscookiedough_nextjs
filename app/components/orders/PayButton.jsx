@@ -29,12 +29,12 @@ export default function PayButton({
     });
 
     const data = await res.json();
-    if (typeof window !== "undefined") {
-      window.location.href = data.url;
-    } else {
-      alert("Checkout failed: " + data.error);
-      setLoading(false);
-    }
+    // if (typeof window !== "undefined") {
+    //   window.location.href = data.url;
+    // } else {
+    //   alert("Checkout failed: " + data.error);
+    //   setLoading(false);
+    // }
   };
 
   return (
