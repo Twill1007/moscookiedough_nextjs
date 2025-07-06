@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import OrderItem from "./OrderItem";
+import OrderItem from "./OrderItem.jsx";
 
 export default function OrderDetail({ order, onClose, setSelectedOrder }) {
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
