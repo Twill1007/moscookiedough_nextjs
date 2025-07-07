@@ -5,6 +5,7 @@ import NavBar from "./components/orders/NavBar";
 import Footer from "./components/orders/Footer";
 import { Pacifico } from "next/font/google";
 import { Chewy } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,6 +43,7 @@ export default function RootLayout({ children }) {
         <CartProvider>
           <NavBar />
           {children}
+          <Analytics />
         </CartProvider>
         <Footer />
       </body>

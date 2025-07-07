@@ -42,3 +42,5 @@ next-env.d.ts
 
 # hash-password
 hash-password.js
+
+.vercel
