@@ -4,15 +4,26 @@ import { useCart } from "../context/CartContext";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import PayButton from "../components/orders/PayButton";
+import { useEffect, useState } from "react";
 
 export default function Review() {
   const { checkoutInfo, cart } = useCart();
   const router = useRouter();
 
-  if (!checkoutInfo || !cart || cart.length === 0) {
-    router.push("/checkout");
-    return null;
-  }
+  // State to control if we should render the page
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    // Only set ready if data is present; otherwise, redirect
+    if (!checkoutInfo || !cart || cart.length === 0) {
+      router.push("/checkout");
+    } else {
+      setReady(true);
+    }
+  }, [checkoutInfo, cart, router]);
+
+  // Optionally, you can show a loading spinner or just nothing while redirecting
+  if (!ready) return null;
 
   const lineItems = cart.map((item) => ({
     price_data: {

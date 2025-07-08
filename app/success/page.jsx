@@ -2,6 +2,7 @@
 
 import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+import { useCart } from "../context/CartContext"; // adjust this import path if needed
 
 function SuccessContent() {
   const searchParams = useSearchParams();
@@ -10,6 +11,9 @@ function SuccessContent() {
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Get setCart from context
+  const { setCart } = useCart();
+
   useEffect(() => {
     if (session_id) {
       fetch(`/api/get-order?session_id=${session_id}`)
@@ -17,11 +21,17 @@ function SuccessContent() {
         .then((data) => {
           setOrder(data.order);
           setLoading(false);
+
+          // Only clear cart if order was found
+          if (data.order) {
+            setCart([]);
+            localStorage.removeItem("cart");
+          }
         });
     } else {
       setLoading(false);
     }
-  }, [session_id]);
+  }, [session_id, setCart]);
 
   if (loading) return <div className="p-8 text-center">Loading...</div>;
 
