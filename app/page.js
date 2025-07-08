@@ -113,7 +113,7 @@ export default function LandingPage() {
                   fontFamily: "var(--font-chewy), cursive",
                 }}
               >
-                Why Mo’s Cookie Dough?
+                Test
               </h2>
               <ul className="list-none space-y-4 text-2xl text-[#7B4A21]">
                 <li className="flex items-center justify-center md:justify-start gap-3">
