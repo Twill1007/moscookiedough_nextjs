@@ -8,7 +8,7 @@ export async function PATCH(request, { params }) {
 
   try {
     const client = await clientPromise;
-    const db = client.db("mos_cookie_dough");
+    const db = client.db("MOSDOUGHNEXTJS");
     const collection = db.collection("orders");
 
     const updatePath = `items.${itemIndex}.filled`;
