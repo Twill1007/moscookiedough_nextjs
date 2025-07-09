@@ -12,8 +12,9 @@ export async function POST(request) {
       mode: "payment",
       line_items,
       success_url:
-        "http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}",
-      cancel_url: "http://localhost:3000/cancel",
+        "https://moscookiedough.com/success?session_id={CHECKOUT_SESSION_ID}",
+      cancel_url: "https://moscookiedough.com/cancel",
+
       customer_email: customerInfo?.email || "",
       metadata: {
         name: customerInfo?.name || "",
