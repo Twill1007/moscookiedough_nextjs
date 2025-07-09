@@ -13,7 +13,7 @@ export async function POST(request) {
       line_items,
       success_url:
         "https://moscookiedough.com/success?session_id={CHECKOUT_SESSION_ID}",
-      cancel_url: "https://moscookiedough.com/cancel",
+      cancel_url: "https://moscookiedough.com/cart",
 
       customer_email: customerInfo?.email || "",
       metadata: {
