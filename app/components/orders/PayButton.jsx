@@ -29,11 +29,18 @@ export default function PayButton({
       }),
     });
 
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => ({}));
+      alert("Checkout failed: " + (errorData.error || res.status));
+      setLoading(false);
+      return;
+    }
+
     const data = await res.json();
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && data.url) {
       window.location.href = data.url;
     } else {
-      alert("Checkout failed: " + data.error);
+      alert("Checkout failed: No URL returned.");
       setLoading(false);
     }
   };
