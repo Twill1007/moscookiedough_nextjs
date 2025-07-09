@@ -6,7 +6,7 @@ export async function POST(request) {
   try {
     const order = await request.json();
     const client = await clientPromise;
-    const db = client.db("mos_cookie_dough");
+    const db = client.db("MOSDOUGHNEXTJS");
     const orders = db.collection("orders");
 
     await orders.insertOne(order);
