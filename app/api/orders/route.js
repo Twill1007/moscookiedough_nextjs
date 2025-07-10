@@ -1,6 +1,7 @@
 // app/api/orders/route.js
 import { NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
+import { sendOrderConfirmationEmail } from "@/lib/email";
 
 export async function POST(request) {
   try {
@@ -9,7 +10,12 @@ export async function POST(request) {
     const db = client.db("MOSDOUGHNEXTJS");
     const orders = db.collection("orders");
 
-    await orders.insertOne(order);
+    const result = await orders.insertOne(order);
+
+    await sendOrderConfirmationEmail(order.email, {
+      ...order,
+      _id: result.insertedId, // So the customer sees their order ID
+    });
 
     return NextResponse.json(
       { message: "Order saved successfully" },
