@@ -69,7 +69,7 @@ export default function Orders() {
                       {order.items
                         .map(
                           (item) =>
-                            `${item.qty} Dozen ${
+                            `${item.quantity} Dozen ${
                               item.flavor || item.name || "unknown"
                             }`
                         )
