@@ -3,12 +3,33 @@
 import Link from "next/link";
 import { useCart } from "../context/CartContext";
 import { useRouter } from "next/navigation";
+import { allowedZips } from "../constants/allowedZips";
+import { useState } from "react"; // <-- You were missing this import!
 
 export default function Checkout() {
   const { cart, setCheckoutInfo } = useCart();
+  const [zip, setZip] = useState("");
+  const [zipError, setZipError] = useState("");
   const router = useRouter();
 
   const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
+
+  // Handler for real-time ZIP validation
+  const handleZipChange = (e) => {
+    const value = e.target.value;
+    setZip(value);
+
+    // Only validate for 5-digit input
+    if (value.length === 5) {
+      if (!allowedZips.includes(value)) {
+        setZipError("Sorry, we only deliver to select areas in Arizona.");
+      } else {
+        setZipError("");
+      }
+    } else {
+      setZipError(""); // Hide error for incomplete input
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,7 +38,7 @@ export default function Checkout() {
 
     const email = form.email.value.trim();
     const phone = form.phone.value.trim();
-    const zip = form.zip.value.trim();
+    const zipInput = form.zip.value.trim();
     const street = form.street.value.trim();
     const city = form.city.value.trim();
 
@@ -36,8 +57,13 @@ export default function Checkout() {
       return;
     }
 
-    if (!zipRegex.test(zip)) {
-      alert("Please enter a 5-digit ZIP code.");
+    if (!zipRegex.test(zipInput)) {
+      setZipError("Please enter a 5-digit ZIP code.");
+      return;
+    }
+
+    if (!allowedZips.includes(zipInput)) {
+      setZipError("Sorry, we only deliver to select areas in Arizona.");
       return;
     }
 
@@ -50,7 +76,7 @@ export default function Checkout() {
       name: form.name.value,
       email,
       phone,
-      address: { street, city, zip },
+      address: { street, city, zip: zipInput },
       items: cart.map((item) => ({
         flavor: item.name,
         quantity: item.quantity,
@@ -192,14 +218,21 @@ export default function Checkout() {
                   <input
                     type="text"
                     name="zip"
+                    value={zip}
+                    onChange={handleZipChange}
                     required
-                    className="mt-1 block w-full px-4 py-3 border border-[#F3E0C7] rounded-xl text-[#7B4A21] bg-[#FFF5EA] focus:outline-none focus:ring-2 focus:ring-[#A17043] focus:border-[#A17043] transition"
+                    maxLength={5}
+                    className={`mt-1 block w-full px-4 py-3 border rounded-xl text-[#7B4A21] bg-[#FFF5EA] focus:outline-none focus:ring-2 focus:ring-[#A17043] focus:border-[#A17043] transition ${zipError ? "border-red-500" : "border-[#F3E0C7]"}`}
                   />
+                  {zipError && (
+                    <div className="text-red-600 mt-1 text-sm">{zipError}</div>
+                  )}
                 </div>
               </div>
               <button
                 type="submit"
                 className="w-full cursor-pointer bg-[#A17043] text-white font-bold text-xl px-4 py-4 rounded-full shadow hover:bg-[#7B4A21] transition"
+                disabled={!!zipError || zip.length !== 5}
               >
                 Review Order
               </button>

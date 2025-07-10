@@ -2,7 +2,7 @@
 
 import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { useCart } from "../context/CartContext"; // adjust this import path if needed
+import { useCart } from "../context/CartContext"; // adjust import path if needed
 
 function SuccessContent() {
   const searchParams = useSearchParams();
@@ -11,7 +11,6 @@ function SuccessContent() {
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Get setCart from context
   const { setCart } = useCart();
 
   useEffect(() => {
@@ -21,8 +20,6 @@ function SuccessContent() {
         .then((data) => {
           setOrder(data.order);
           setLoading(false);
-
-          // Only clear cart if order was found
           if (data.order) {
             setCart([]);
             localStorage.removeItem("cart");
@@ -37,32 +34,51 @@ function SuccessContent() {
 
   if (!order) {
     return (
-      <div className="p-8 text-center min-h-screen">
-        <h1 className="text-2xl font-bold mb-24 mt-24">Order Not Found</h1>
-        <p>Sorry, we couldn't find your order.</p>
+      <div className="p-8 flex items-center justify-center min-h-screen bg-white">
+        <div
+          className="max-w-lg w-full mx-auto p-8 rounded-2xl shadow-xl border"
+          style={{ background: "#f8f1e4" }}
+        >
+          <h1 className="text-2xl font-bold mb-4 text-[#7B3F00]">
+            Order Not Found
+          </h1>
+          <p className="text-gray-700">Sorry, we couldn't find your order.</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="max-w-lg mx-auto p-8 mt-24 min-h-screen">
-      <h1 className="text-2xl font-bold mb-4">Thank you for your order!</h1>
-      <div className="mb-6">
-        <p className="mb-6">Order #{order._id}</p>
-        <h2 className="font-semibold">Order Details:</h2>
-        <ul className="list-disc ml-6">
-          {order.items.map((item, i) => (
-            <li key={i}>
-              {item.name} {item.quantity} Dozen
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <strong>Total:</strong> ${order.total.toFixed(2)}
-      </div>
-      <div className="mt-8 text-sm text-gray-600">
-        You’ll receive an email confirmation soon.
+    <div className="min-h-screen flex items-center justify-center bg-white">
+      <div
+        className="max-w-lg w-full mx-auto p-10 rounded-2xl shadow-xl border"
+        style={{ background: "#f8f1e4" }}
+      >
+        <h1 className="text-3xl font-extrabold mb-4 text-[#7B3F00]">
+          Thank you for your order!
+        </h1>
+        <div className="mb-6">
+          <p className="mb-3 text-lg text-[#7B3F00] font-semibold">
+            Order #{order._id}
+          </p>
+          <h2 className="font-semibold text-[#7B3F00] mb-1">Order Details:</h2>
+          <ul className="list-disc ml-6 text-gray-800">
+            {order.items.map((item, i) => (
+              <li key={i}>
+                {item.name} {item.quantity} Dozen
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="mb-6">
+          <strong className="text-[#7B3F00]">Total:</strong>{" "}
+          <span className="font-semibold text-gray-800">
+            ${order.total.toFixed(2)}
+          </span>
+        </div>
+        <div className="mt-8 text-sm text-gray-500">
+          You’ll receive an email confirmation soon.
+        </div>
       </div>
     </div>
   );
