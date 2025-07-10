@@ -12,7 +12,6 @@ export default function PayButton({
   const [loading, setLoading] = useState(false);
 
   const handleCheckout = async () => {
-    console.log("Pay Now clicked");
     setLoading(true);
 
     const res = await fetch("/api/checkout", {

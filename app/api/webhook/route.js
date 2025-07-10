@@ -1,5 +1,6 @@
 import Stripe from "stripe";
 import clientPromise from "@/lib/mongodb";
+import { sendOrderConfirmationEmail } from "@/lib/email";
 
 // Stripe instance
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -35,7 +36,7 @@ export async function POST(req) {
     try {
       const client = await clientPromise;
       const db = client.db(process.env.MONGODB_DB);
-      await db.collection("orders").insertOne({
+      const orderFields = {
         stripeSessionId: session.id,
         email: session.metadata?.email || session.customer_email || "",
         name: session.metadata?.name || "",
@@ -51,7 +52,16 @@ export async function POST(req) {
         })),
         total: session.amount_total / 100,
         createdAt: new Date(),
+      };
+
+      const result = await db.collection("orders").insertOne(orderFields);
+
+      // Now send the confirmation email!
+      await sendOrderConfirmationEmail(orderFields.email, {
+        ...orderFields,
+        _id: result.insertedId,
       });
+
       console.log("Webhook firing for session:", session.id);
       console.log("Order saved for session:", session.id);
     } catch (err) {
