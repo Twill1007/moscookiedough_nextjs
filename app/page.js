@@ -2,6 +2,7 @@
 
 import Button from "./components/orders/Button";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 export default function LandingPage() {
   const router = useRouter();
@@ -56,52 +57,62 @@ export default function LandingPage() {
       </section>
 
       {/* Zig-Zag Info Section: Full-Bleed Rows */}
+
       <div className="flex flex-col gap-20 py-20">
         {/* Row 1: Image Left, Text Right */}
-        <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#FFF5EA] shadow-lg overflow-hidden flex flex-col md:flex-row items-center md:items-stretch py-16">
-          {/* Image */}
-          <div className="md:w-1/2 w-full flex justify-center items-center py-8">
-            <div className="w-64 h-64 rounded-full border-4 border-[#F3E0C7] bg-white flex items-center justify-center shadow-xl overflow-hidden">
-              <span className="text-[#D2A06E] text-2xl font-bold text-center">
-                [Dough Balls Image]
+        <motion.div
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-white shadow-lg overflow-hidden flex flex-col md:flex-row items-center md:items-stretch"
+        >
+          <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-white shadow-lg overflow-hidden flex flex-col md:flex-row items-center md:items-stretch">
+            {/* Image */}
+            <div className="md:w-1/2 w-full flex justify-center items-center ">
+              <span>
+                <img src={`/cookies/Cookie-Dough-Sheet.jpg`} />
               </span>
             </div>
+            {/* Text */}
+            <section className="md:w-1/2 w-full flex flex-col justify-center items-center px-4 md:px-20 py-8 text-center">
+              <div className="max-w-2xl w-full">
+                <h2
+                  className="text-5xl font-bold mb-6"
+                  style={{
+                    color: "#7B4A21",
+                    fontFamily: "var(--font-chewy), cursive",
+                  }}
+                >
+                  Always Ready, Always Fresh
+                </h2>
+                <p
+                  className="text-2xl"
+                  style={{ color: "#7B4A21" }}
+                >
+                  With Mo’s Cookie Dough, you’re always minutes from warm, fresh
+                  cookies.
+                  <br />
+                  Keep our frozen dough in your freezer and bake a batch
+                  anytime—no prep, no mess, just pure cookie bliss.
+                </p>
+              </div>
+            </section>
           </div>
-          {/* Text */}
-          <section className="md:w-1/2 w-full flex flex-col justify-center items-center px-4 md:px-20 py-8 text-center">
-            <div className="max-w-2xl w-full">
-              <h2
-                className="text-5xl font-bold mb-6"
-                style={{
-                  color: "#7B4A21",
-                  fontFamily: "var(--font-chewy), cursive",
-                }}
-              >
-                Always Ready, Always Fresh
-              </h2>
-              <p
-                className="text-2xl"
-                style={{ color: "#7B4A21" }}
-              >
-                With Mo’s Cookie Dough, you’re always minutes from warm, fresh
-                cookies.
-                <br />
-                Keep our frozen dough in your freezer and bake a batch
-                anytime—no prep, no mess, just pure cookie bliss.
-              </p>
-            </div>
-          </section>
-        </div>
-
+        </motion.div>
         {/* Row 2: Image Right, Text Left */}
-        <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#F8E8D5] shadow-lg overflow-hidden flex flex-col md:flex-row-reverse items-center md:items-stretch py-16">
+        <motion.div
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#F8E8D5] shadow-lg overflow-hidden flex flex-col md:flex-row-reverse items-center md:items-stretch"
+        >
           {/* Image */}
-          <div className="md:w-1/2 w-full flex justify-center items-center py-8">
-            <div className="w-64 h-64 rounded-full border-4 border-[#F3E0C7] bg-white flex items-center justify-center shadow-xl overflow-hidden">
-              <span className="text-[#E2BA85] text-2xl font-bold text-center">
-                [Why Mo’s Image]
-              </span>
-            </div>
+          <div className="md:w-1/2 w-full flex justify-center items-center">
+            <span>
+              <img src={`/cookies/Snickerdoodle-Cookie-LandingPage.jpg`} />
+            </span>
           </div>
           {/* Text */}
           <section className="md:w-1/2 w-full flex flex-col justify-center items-center px-4 md:px-20 py-8 text-center">
@@ -170,17 +181,21 @@ export default function LandingPage() {
               </ul>
             </div>
           </section>
-        </div>
+        </motion.div>
 
         {/* Row 3: Image Left, Text Right */}
-        <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#F3E0C7] shadow-lg overflow-hidden flex flex-col md:flex-row items-center md:items-stretch py-16">
+        <motion.div
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#F3E0C7] shadow-lg overflow-hidden flex flex-col md:flex-row items-center md:items-stretch py-16"
+        >
           {/* Image */}
-          <div className="md:w-1/2 w-full flex justify-center items-center py-8">
-            <div className="w-64 h-64 rounded-full border-4 border-[#E2BA85] bg-white flex items-center justify-center shadow-xl overflow-hidden">
-              <span className="text-[#E2BA85] text-2xl font-bold text-center">
-                [Warm Cookies Image]
-              </span>
-            </div>
+          <div className="md:w-1/2 w-full flex justify-center items-center">
+            <span>
+              <img src={`/cookies/CC_Broken.jpg`} />
+            </span>
           </div>
           {/* Text */}
           <section className="md:w-1/2 w-full flex flex-col justify-center items-center px-4 md:px-20 py-8 text-center">
@@ -212,7 +227,7 @@ export default function LandingPage() {
               </p>
             </div>
           </section>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
