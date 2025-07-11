@@ -189,7 +189,7 @@ export default function LandingPage() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.3 }}
-          className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#F3E0C7] shadow-lg overflow-hidden flex flex-col md:flex-row items-center md:items-stretch py-16"
+          className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#F3E0C7] shadow-lg overflow-hidden flex flex-col md:flex-row items-center md:items-stretch"
         >
           {/* Image */}
           <div className="md:w-1/2 w-full flex justify-center items-center">
