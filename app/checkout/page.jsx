@@ -89,7 +89,7 @@ export default function Checkout() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF5EA] flex items-center justify-center py-20 px-2">
+    <div className="min-h-screen bg-white flex items-center justify-center py-20 px-2 mt-24">
       <div className="w-full max-w-2xl bg-white/90 rounded-3xl shadow-lg border-4 border-[#F3E0C7] px-8 py-12 flex flex-col items-center">
         <h1 className="text-5xl font-extrabold text-[#7B4A21] mb-8 drop-shadow text-center font-[cursive] flex items-center gap-2">
           <span

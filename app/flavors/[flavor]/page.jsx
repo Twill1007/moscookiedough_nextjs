@@ -103,8 +103,8 @@ export default function FlavorPage({ params }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF5EA] flex items-center justify-center py-0 px-0">
-      <div className="w-full max-w-2xl bg-[#FFF5EA] text-center py-12 px-2 sm:px-4">
+    <div className="min-h-screen bg-white flex items-center justify-center py-0 px-0">
+      <div className="w-full max-w-2xl bg-white text-center py-12 px-2 sm:px-4">
         {/* Headline */}
 
         {/* Main card */}

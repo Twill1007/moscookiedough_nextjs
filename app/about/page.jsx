@@ -1,9 +1,6 @@
 export default function AboutPage() {
   return (
-    <div
-      className="pt-24 pb-24 min-h-screen flex items-center justify-center"
-      style={{ background: "#F3E0C7" }} // cookie dough background
-    >
+    <div className="pt-24 pb-24 min-h-screen bg-white flex items-center justify-center">
       <div
         className="max-w-xl w-full mx-auto p-10 rounded-2xl shadow-xl text-center"
         style={{
